@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>QMAP Executive Edition — QE Maturity & Transformation Accelerator | Feuji</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" onerror="window.chartLoadFailed=true"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -916,6 +916,7 @@ function cc(c){return{H:'#18B870',M:'#D08820',L:'#DC3C3C'}[c]||'#3A5272';}
 function p(s){return parseFloat(String(s).replace('%',''))||null;}
 function n(s){return parseFloat(String(s).replace(/[^\d.]/g,''))||null;}
 function sl(ms){return new Promise(r=>setTimeout(r,ms));}
+function setTxt(id,value){const el=document.getElementById(id);if(el)el.textContent=value;}
 function sv(id,el){
   document.querySelectorAll('.sidebar .sb-btn').forEach(e=>e.classList.remove('active'));
   if(el)el.classList.add('active');
@@ -927,19 +928,32 @@ function srview(id,el){
   document.getElementById('view-results').classList.add('active');
   document.querySelectorAll('.sidebar .sb-btn').forEach(e=>e.classList.remove('active'));
   if(el)el.classList.add('active');
+  else{
+    const navMap={scorecard:'Scorecard',heatmap:'Heatmap',benchmark:'Benchmarks',charts:'Charts',gaps:'Gap Analysis',roadmap:'Roadmap',value:'Value Case',exec:'Executive Summary',method:'Methodology',consult:'Consultant View'};
+    const navLabel=navMap[id];
+    if(navLabel){
+      const nav=[...document.querySelectorAll('.sidebar .sb-btn')].find(btn=>btn.textContent.includes(navLabel));
+      if(nav)nav.classList.add('active');
+    }
+  }
   document.querySelectorAll('#view-results [id^="rview-"]').forEach(v=>v.style.display='none');
   const rv=document.getElementById('rview-'+id);
   if(rv)rv.style.display='block';
-  if(id==='scorecard'){rSc();rHm();}
-  if(id==='heatmap')rHm();
-  if(id==='benchmark')rBench();
-  if(id==='charts')rCharts();
-  if(id==='gaps')rGaps();
-  if(id==='roadmap')rRoad();
-  if(id==='value')rValue();
-  if(id==='exec')rExec();
-  if(id==='method')rMethod();
-  if(id==='consult')rConsult();
+  try{
+    if(id==='scorecard'){rSc();rHm();}
+    if(id==='heatmap')rHm();
+    if(id==='benchmark')rBench();
+    if(id==='charts')rCharts();
+    if(id==='gaps')rGaps();
+    if(id==='roadmap')rRoad();
+    if(id==='value')rValue();
+    if(id==='exec')rExec();
+    if(id==='method')rMethod();
+    if(id==='consult')rConsult();
+  }catch(e){
+    console.warn('QMAP render warning',e);
+    showRuntimeNotice('Results are available, but one optional visual component could not be rendered.');
+  }
 }
 function refreshBench(){rSc();rBench();}
 function buildDataForm(){
@@ -1022,7 +1036,7 @@ function renderMapTable(cid,scores){
   });
 }
 function applyData(){Object.entries(dataP).forEach(([id,sc])=>{if(!dimSc[id]||sc.confidence==='H')dimSc[id]=sc;});document.getElementById('ck-data').textContent='✓';document.getElementById('ck-data').style.color='var(--grn)';document.getElementById('sb-data').classList.add('done');updHdr();}
-function applyDoc(){Object.entries(docP).forEach(([id,sc])=>{if(!dimSc[id]||sc.confidence==='H')dimSc[id]=sc;});document.getElementById('ck-doc').textContent='✓';document.getElementById('ck-doc').style.color='var(--grn)';document.getElementById('sb-doc').classList.add('done');updHdr();}
+function applyDoc(){if(!Object.keys(docP).length){alert('Upload and analyse at least one document before applying scores.');return;}Object.entries(docP).forEach(([id,sc])=>{if(!dimSc[id]||sc.confidence==='H')dimSc[id]=sc;});document.getElementById('ck-doc').textContent='✓';document.getElementById('ck-doc').style.color='var(--grn)';document.getElementById('sb-doc').classList.add('done');updHdr();}
 function applyChat(){Object.entries(chatSc).forEach(([id,sc])=>{if(!dimSc[id])dimSc[id]=sc;});document.getElementById('ck-chat').textContent='✓';document.getElementById('ck-chat').style.color='var(--grn)';document.getElementById('sb-chat').classList.add('done');updHdr();}
 function hfiles(f){Array.from(f).forEach(addDoc);}
 function hdrop(e){e.preventDefault();document.getElementById('uz').classList.remove('drag');hfiles(e.dataTransfer.files);}
@@ -1207,8 +1221,8 @@ function rSc(){
   const avg=avgScore();const l=lvl(avg);const col=COLS[l];
   drawGauge(avg,col);
   document.getElementById('gnum').textContent=avg.toFixed(1);document.getElementById('gnum').style.color=col;
-  document.getElementById('hScore').textContent=avg.toFixed(1);document.getElementById('hScore2').textContent=avg.toFixed(1);
-  document.getElementById('hDims').textContent=`${sc.length}/10`;
+  setTxt('hScore',avg.toFixed(1));setTxt('hScore2',avg.toFixed(1));
+  setTxt('hDims',`${sc.length}/10`);
   const titles=['','Critical Gaps — Foundation Required','Developing — Inconsistent Practices','Defined — Standards in Place','Measured — Data-Driven Quality','Optimising — World-Class QE'];
   const descs=['','Critical gaps across QE. Immediate intervention to prevent delivery risk and production failures.',
     'Basic practices in place but inconsistency is the core problem. Standardisation will deliver fast results.',
@@ -1292,6 +1306,13 @@ function rBench(){
   grid.appendChild(right);
 }
 function rCharts(){
+  if(typeof Chart==='undefined'){
+    const msg='<div class="callout callout-info"><div class="callout-ico">📊</div><div class="callout-body"><strong>Charts unavailable</strong><p>Your scores and all results are still available. Chart rendering needs the external Chart.js library, which could not be loaded in this browser session.</p></div></div>';
+    const bar=document.getElementById('barC'),rad=document.getElementById('radC');
+    if(bar?.parentElement)bar.parentElement.innerHTML=msg;
+    if(rad?.parentElement)rad.parentElement.innerHTML=msg;
+    return;
+  }
   Chart.defaults.color='#555555';Chart.defaults.font.family="'Inter',sans-serif";Chart.defaults.font.size=11;
   const grd={color:'#E8E8E8',drawBorder:false};
   const labels=DIMS.map(d=>d.nm.length>11?d.nm.slice(0,11)+'…':d.nm);
@@ -1476,8 +1497,8 @@ function loadDemoV2(){
 }
 
 function updHdr(){
-  const sc=scored();if(sc.length){const avg=avgScore();document.getElementById('hScore').textContent=avg.toFixed(1);document.getElementById('hScore2').textContent=avg.toFixed(1);}
-  document.getElementById('hDims').textContent=`${Object.keys(dimSc).length}/10`;
+  const sc=scored();if(sc.length){const avg=avgScore();setTxt('hScore',avg.toFixed(1));setTxt('hScore2',avg.toFixed(1));}
+  setTxt('hDims',`${Object.keys(dimSc).length}/10`);
 }
 function resetAll(){
   if(!confirm('Reset all scores and start fresh?'))return;
@@ -1486,8 +1507,8 @@ function resetAll(){
   document.getElementById('orgName').value='';document.getElementById('sectorSel').value='general';
   document.querySelectorAll('.sb-btn-badge').forEach(e=>e.textContent='○');
   document.querySelectorAll('.sb-btn').forEach(e=>e.classList.remove('done'));
-  document.getElementById('hScore').textContent='—';document.getElementById('hScore2').textContent='—';
-  document.getElementById('hDims').textContent='0/10';document.getElementById('hTarget').textContent='4.0';TARGET=4.0;consultantOverrides={};
+  setTxt('hScore','—');setTxt('hScore2','—');
+  setTxt('hDims','0/10');setTxt('hTarget','4.0');TARGET=4.0;consultantOverrides={};
   buildDataForm();buildManual();resetChat();
   sv('welcome',document.getElementById('sb-welcome'));
 }
@@ -1497,7 +1518,8 @@ initChat();
 
 
 
-window.addEventListener('error',function(e){try{var old=document.getElementById('runtimeAlert');if(old)old.remove();var n=document.createElement('div');n.id='runtimeAlert';n.className='runtime-alert';n.innerHTML='<b>CRAFT/QMAP/AIDEN notice:</b> A browser component could not be loaded. Refresh the page or verify internet access for chart rendering.';document.body.appendChild(n);setTimeout(function(){n.remove()},7000)}catch(_){}});
+function showRuntimeNotice(message){try{var old=document.getElementById('runtimeAlert');if(old)old.remove();var n=document.createElement('div');n.id='runtimeAlert';n.className='runtime-alert';n.innerHTML='<b>QMAP notice:</b> '+message;document.body.appendChild(n);setTimeout(function(){n.remove()},7000)}catch(_){}}
+window.addEventListener('error',function(e){try{if(e.target&&e.target.tagName==='SCRIPT'){window.chartLoadFailed=true;return;}showRuntimeNotice('A non-critical browser component could not be loaded. You can continue with the assessment results.')}catch(_){}},true);
 </script>
 </body>
 </html>
