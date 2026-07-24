@@ -299,19 +299,20 @@ html,body{height:100%;background:var(--bg);color:var(--w);font-family:Inter,sans
 .sc-src{font-size:9px;color:var(--mut);padding-left:8px;margin-top:5px;font-family:"JetBrains Mono",monospace}
 
 /* ── HEATMAP ── */
-.hm-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:16px}
-.hm-cell{border-radius:var(--r);padding:12px 10px;text-align:center;transition:transform .2s;min-height:132px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.hm-cell:hover{transform:translateY(-2px)}
-.hm-n{font-size:9px;font-family:"JetBrains Mono",monospace;opacity:.65;margin-bottom:5px;line-height:1}
-.hm-name{font-size:10px;font-weight:500;margin-bottom:9px;line-height:1.3;color:inherit}
-.hm-score{font-size:22px;font-weight:700;font-family:"JetBrains Mono",monospace;line-height:1}
-.hm-lbl{font-size:9px;margin-top:4px;opacity:.8;font-style:italic}
-.hm-nm{font-size:10px;font-weight:600;margin-bottom:8px;line-height:1.25;color:inherit;min-height:25px;max-width:95%}
-.hm-sc{font-size:22px;font-weight:700;font-family:"JetBrains Mono",monospace;line-height:1;letter-spacing:0}
-.hm-src{font-size:10px;opacity:.5;margin-top:7px;line-height:1}
-.hm0{background:#F5F5F5;color:#AAA}
-.hm1{background:#FFEBEE;color:#C0281E}.hm2{background:#FFF3E0;color:#E65100}
-.hm3{background:#F9FBE7;color:#558B2F}.hm4{background:#E8F5E9;color:#1A7A45}.hm5{background:#E3F2FD;color:#1565C0}
+.hm-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:16px}
+.hm-cell{--hm-col:#999;--hm-bg:#FAFAFA;background:#fff;border:1.5px solid var(--bdr);border-left:6px solid var(--hm-col);border-radius:var(--r);box-shadow:var(--sh);padding:13px 15px;text-align:left;transition:all .2s;min-height:86px;display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center}
+.hm-cell:hover{transform:translateY(-2px);box-shadow:var(--sh2);background:var(--hm-bg)}
+.hm-n{font-size:10px;font-family:"JetBrains Mono",monospace;color:var(--mut);line-height:1;margin-bottom:5px}
+.hm-name,.hm-nm{font-size:13px;font-weight:700;line-height:1.25;color:#1A1A1A;margin-bottom:6px}
+.hm-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.hm-lbl{font-size:10px;font-weight:700;color:var(--hm-col);background:var(--hm-bg);border:1px solid color-mix(in srgb,var(--hm-col) 28%,transparent);border-radius:999px;padding:2px 8px;margin:0;font-style:normal}
+.hm-src{font-size:10px;color:#777;line-height:1;font-family:"JetBrains Mono",monospace}
+.hm-score-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:4px;min-width:70px}
+.hm-score,.hm-sc{font-size:24px;font-weight:800;font-family:"JetBrains Mono",monospace;line-height:1;color:var(--hm-col);letter-spacing:0}
+.hm-score-sub{font-size:9px;color:var(--mut);font-family:"JetBrains Mono",monospace}
+.hm0{--hm-col:#999;--hm-bg:#F5F5F5}
+.hm1{--hm-col:#C0281E;--hm-bg:#FFF1F1}.hm2{--hm-col:#E65100;--hm-bg:#FFF6E8}
+.hm3{--hm-col:#558B2F;--hm-bg:#F7FAEA}.hm4{--hm-col:#1A7A45;--hm-bg:#F0FAF5}.hm5{--hm-col:#1565C0;--hm-bg:#EFF7FF}
 .hm-legend{display:flex;gap:14px;margin-bottom:14px;flex-wrap:wrap}
 .hml-item{display:flex;align-items:center;gap:5px;font-size:10px;color:#555}
 .hml-dot{width:8px;height:8px;border-radius:2px}
@@ -399,7 +400,7 @@ html,body{height:100%;background:var(--bg);color:var(--w);font-family:Inter,sans
 .methodology-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.method-box{background:#fff;border:1.5px solid var(--bdr);border-radius:var(--r);padding:16px;box-shadow:var(--sh)}.method-box h3{font-size:13px;margin-bottom:7px}.method-box p,.method-box li{font-size:11px;color:var(--dim);line-height:1.65}.method-box ul{padding-left:16px}
 .value-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}.value-card{background:#fff;border:1.5px solid var(--bdr);border-radius:var(--r);padding:14px;box-shadow:var(--sh)}.value-card .v{font-size:21px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--or)}.value-card .l{font-size:10px;color:var(--dim);margin-top:3px}
 .range-note{font-size:10px;color:var(--mut);margin-top:6px}.consult-table{width:100%;border-collapse:collapse}.consult-table th{background:var(--or);color:#fff;font-size:9px;text-transform:uppercase;letter-spacing:.07em;padding:9px;text-align:left}.consult-table td{padding:9px;border-bottom:1px solid var(--bdr);font-size:11px}.consult-table input,.consult-table select{width:100%;padding:5px;border:1px solid var(--bdr2);border-radius:4px;font-size:11px}.disclaimer{background:#FFF8E1;border:1.5px solid rgba(176,96,16,.25);border-radius:var(--r2);padding:10px 12px;font-size:10px;color:#6d4c10;line-height:1.55;margin-bottom:14px}
-@media(max-width:1000px){.profile-grid,.value-grid{grid-template-columns:repeat(2,1fr)}.methodology-grid{grid-template-columns:1fr}}
+@media(max-width:1000px){.profile-grid,.value-grid{grid-template-columns:repeat(2,1fr)}.methodology-grid{grid-template-columns:1fr}.hm-grid{grid-template-columns:1fr}}
 
 @media print{.sidebar,.hdr,.cta-block,.cta-btns,.analyse-btn,.btn,.chat-send{display:none!important}.layout{display:block}.content{height:auto;overflow:visible}.view{display:block!important;page-break-before:always}.view:first-child{page-break-before:avoid}}
 
@@ -1277,9 +1278,9 @@ function rHm(){
   DIMS.forEach(dim=>{
     const sc2=dimSc[dim.id];const s=sc2?sc2.score:0;const l=s?lvl(s):0;
     const cell=document.createElement('div');cell.className=`hm-cell hm${l}`;
-    cell.innerHTML=`<div class="hm-n">${dim.ico} ${dim.n}</div><div class="hm-nm">${dim.nm}</div>
-      <div class="hm-sc">${s?s.toFixed(1):'?'}</div><div class="hm-lbl">${s?LBL[l]:'Pending'}</div>
-      ${sc2?`<div class="hm-src">${sico(sc2.source)}</div>`:''}`;
+    cell.innerHTML=`<div><div class="hm-n">${dim.ico} ${dim.n}</div><div class="hm-nm">${dim.nm}</div>
+      <div class="hm-meta"><span class="hm-lbl">${s?LBL[l]:'Pending'}</span>${sc2?`<span class="hm-src">${sico(sc2.source)} ${sc2.source}</span>`:''}</div></div>
+      <div class="hm-score-wrap"><div class="hm-sc">${s?s.toFixed(1):'?'}</div><div class="hm-score-sub">/ 5.0</div></div>`;
     grid.appendChild(cell);
   });
   const sc=scored();const ins=document.getElementById('hmIns');
