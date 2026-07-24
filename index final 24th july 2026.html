@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Feuji FUSION — Executive Advisory Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--or:#f15a24;--ink:#171a21;--mut:#697180;--line:#e7e9ee;--paper:#fafafb;--white:#fff;--violet:#6d5bd0;--green:#1f7a63;--shadow:0 22px 65px rgba(16,24,40,.10)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:Inter,Arial;background:var(--paper);color:var(--ink);line-height:1.6}a{text-decoration:none;color:inherit}
+nav{height:70px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;position:sticky;top:0;z-index:20}
+.brand{display:flex;align-items:center;gap:13px}.feuji{font:800 25px Manrope;color:var(--or);letter-spacing:-1px}.sep{height:27px;width:1px;background:var(--line)}.brand-copy b{display:block;font:700 12px Manrope;letter-spacing:.11em}.brand-copy span{display:block;font-size:9px;color:#98a2b3;letter-spacing:.11em}
+.nav-right{display:flex;gap:10px;align-items:center}.status{font-size:10px;padding:7px 10px;border-radius:999px;background:#f0f7f4;color:#35705e}.status:before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#22a06b;margin-right:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:11px 17px;border-radius:10px;font-size:12px;font-weight:700;border:1px solid var(--line);background:#fff;cursor:pointer;transition:.2s}.btn.primary{background:var(--or);color:#fff;border-color:var(--or);box-shadow:0 10px 24px rgba(241,90,36,.23)}.btn:hover{transform:translateY(-1px)}
+.hero{min-height:680px;display:grid;grid-template-columns:1.08fr .92fr;background:#fff;border-bottom:1px solid var(--line)}
+.hero-copy{padding:95px 6vw 75px 7vw;display:flex;flex-direction:column;justify-content:center}.eyebrow{font-size:10px;color:var(--or);font-weight:800;letter-spacing:.15em;text-transform:uppercase}.hero h1{font:800 clamp(46px,5.7vw,78px)/1.02 Manrope;letter-spacing:-3.4px;margin:18px 0}.hero h1 span{color:var(--or)}.hero p{font-size:17px;color:#5f6673;max-width:760px}.hero-actions{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap}
+.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:46px;padding-top:24px;border-top:1px solid var(--line)}.proof b{font:800 25px Manrope;display:block}.proof span{font-size:10px;color:#8b93a1}
+.hero-art{background:linear-gradient(155deg,#272c35,#15181e);padding:58px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.hero-art:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 48%,rgba(255,255,255,.05) 49%,transparent 50%);background-size:150px 150px}
+.panel{position:relative;width:min(520px,100%);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:26px;padding:28px;box-shadow:0 30px 80px rgba(0,0,0,.28)}.panel h3{font:700 29px Manrope;color:#fff;margin:8px 0}.panel p{font-size:11px;color:#bac2cd}.steps{display:grid;gap:10px;margin-top:22px}.step{display:grid;grid-template-columns:34px 1fr 70px;gap:12px;align-items:center;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08);border-radius:13px;padding:12px}.step i{width:34px;height:34px;border-radius:10px;background:rgba(241,90,36,.15);display:grid;place-items:center;color:#ff9e75;font-style:normal;font-weight:800}.step b{font-size:11px;color:#fff}.step span{font-size:9px;color:#9da6b4;text-align:right}
+section{padding:84px 6vw}.container{max-width:1460px;margin:auto}.kicker{font-size:10px;color:var(--or);font-weight:800;letter-spacing:.14em;text-transform:uppercase}.title{font:800 clamp(32px,4vw,51px)/1.08 Manrope;letter-spacing:-2px;max-width:920px;margin:9px 0 13px}.desc{font-size:14px;color:var(--mut);max-width:780px}
+.assess-layout{display:grid;grid-template-columns:310px 1fr;gap:28px;margin-top:36px}.intro{background:#1d222b;color:#fff;border-radius:22px;padding:27px;display:flex;flex-direction:column}.intro h3{font:700 26px Manrope;line-height:1.15;margin:13px 0}.intro p{font-size:12px;color:#bac2cd}.quote{margin-top:auto;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);font-size:12px}.quote span{display:block;color:#9ca5b2;font-size:9px;margin-top:7px;text-transform:uppercase}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{--accent:var(--or);background:#fff;border:1px solid var(--line);border-radius:20px;padding:23px;min-height:500px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:.25s}.card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent)}.card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--accent)}.card.ai{--accent:var(--violet)}.card.auto{--accent:var(--green)}.card .domain{font-size:9px;color:var(--accent);font-weight:800;letter-spacing:.12em;text-transform:uppercase}.card h3{font:800 28px/1.07 Manrope;margin:24px 0 7px}.powered{font-size:10px;color:#8a92a0}.powered b{color:var(--accent)}.card p{font-size:12px;color:var(--mut);margin:17px 0}.card ul{list-style:none;display:grid;gap:9px;margin-bottom:24px}.card li{font-size:10px;color:#4f5866;padding-left:17px;position:relative}.card li:before{content:"";position:absolute;left:0;top:6px;width:7px;height:7px;border-radius:50%;background:var(--accent)}.card .launch{margin-top:auto;background:var(--accent);color:#fff;border-color:var(--accent)}
+.profile{background:#f1f2f4}.profile-box{margin-top:32px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:27px;box-shadow:0 10px 32px rgba(16,24,40,.06)}.fields{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.field label{display:block;font-size:9px;color:#7a8290;text-transform:uppercase;letter-spacing:.09em;font-weight:700;margin-bottom:6px}.field input,.field select{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;background:#fafafa}.profile-foot{display:flex;justify-content:space-between;gap:20px;align-items:center;border-top:1px solid var(--line);margin-top:16px;padding-top:16px}.profile-foot p{font-size:10px;color:#7d8592;max-width:850px}
+.journey{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}.journey div{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}.journey span{font:800 27px Manrope;color:#d7dbe2}.journey h4{font:700 14px Manrope;margin:6px 0}.journey p{font-size:10px;color:#77808f}
+.vision{background:#1b2028;color:#fff}.vision .desc{color:#bbc3ce}.vision-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:32px}.vision-main{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.10);border-radius:22px;padding:27px}.vision-main h3{font:700 28px Manrope}.vision-main p{font-size:12px;color:#b8c0cc;margin:12px 0 22px}.roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.roadmap div{padding:14px;border-radius:12px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08)}.roadmap b{display:block;font-size:11px}.roadmap span{font-size:9px;color:#9ea7b5}.future{background:#fff;color:#20242b;border-radius:22px;padding:23px}.future h3{font:700 21px Manrope}.future-list{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:14px}.future-list div{border:1px solid var(--line);background:#fafafa;border-radius:10px;padding:9px;font-size:10px;color:#55606d}
+footer{padding:29px 6vw;background:#11151b;color:#c4cbd5}.foot{max-width:1460px;margin:auto;display:flex;justify-content:space-between}.foot b{color:#fff}.foot span{font-size:10px}.toast{position:fixed;right:18px;bottom:18px;background:#1d222b;color:#fff;padding:12px 14px;border-radius:10px;font-size:11px;display:none;box-shadow:var(--shadow)}
+@media(max-width:1080px){.hero{grid-template-columns:1fr}.hero-art{min-height:500px}.assess-layout,.vision-grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.fields{grid-template-columns:repeat(2,1fr)}}@media(max-width:680px){nav{padding:0 14px}.brand-copy,.status{display:none}.hero-copy{padding:58px 20px}.hero-art{padding:24px}.proof,.fields,.journey,.roadmap,.future-list{grid-template-columns:1fr}section{padding:62px 20px}.profile-foot,.foot{flex-direction:column;align-items:flex-start}.hero h1{letter-spacing:-2px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="brand"><div class="feuji">feuji</div><div class="sep"></div><div class="brand-copy"><b>FUSION</b><span>Executive Advisory Portal</span></div></div>
+  <div class="nav-right"><span class="status">Executive Edition</span><a class="btn" href="#assessments">Explore Assessments</a></div>
+</nav>
+
+<div class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">Feuji Enterprise Advisory</div>
+    <h1>Enterprise transformation starts with <span>understanding.</span></h1>
+    <p>Assess current capabilities, interpret evidence and build a transformation roadmap through Feuji's domain-specific consulting accelerators.</p>
+    <div class="hero-actions"><a class="btn primary" href="#assessments">Start Your Transformation Journey →</a><a class="btn" href="#profile">Create Organisation Profile</a></div>
+    <div class="proof"><div><b>3</b><span>Executive consulting accelerators</span></div><div><b>44+</b><span>Readiness and maturity dimensions</span></div><div><b>1</b><span>Unified advisory experience</span></div></div>
+  </div>
+  <div class="hero-art">
+    <div class="panel">
+      <div class="eyebrow" style="color:#ff9e75">Advisory engagement flow</div>
+      <h3>From current state to transformation decisions.</h3>
+      <p>A structured consulting experience for discovery workshops, executive conversations and transformation planning.</p>
+      <div class="steps"><div class="step"><i>1</i><b>Understand enterprise context</b><span>Discovery</span></div><div class="step"><i>2</i><b>Assess maturity and readiness</b><span>Evidence</span></div><div class="step"><i>3</i><b>Prioritise gaps and opportunities</b><span>Insights</span></div><div class="step"><i>4</i><b>Build the transformation roadmap</b><span>Action</span></div></div>
+    </div>
+  </div>
+</div>
+
+<section id="assessments"><div class="container">
+  <div class="kicker">Start with the business question</div><div class="title">What would you like to assess today?</div><p class="desc">The capability comes first. Each assessment is powered by a Feuji consulting accelerator designed for that transformation domain.</p>
+  <div class="assess-layout">
+    <aside class="intro"><div class="kicker" style="color:#ff9e75">Executive advisory approach</div><h3>Select the domain that best matches the customer's transformation priority.</h3><p>Each accelerator can be used independently in workshops, assessment engagements, proposal conversations or executive discovery sessions.</p><div class="quote">“Feuji's consulting methodology digitised—not another software catalogue.”<span>FUSION design principle</span></div></aside>
+    <div class="cards">
+      <article class="card"><div class="domain">Quality Engineering</div><h3>Understand QE maturity and transformation readiness.</h3><div class="powered">Powered by <b>QMAP</b></div><p>Evaluate Quality Engineering capability, operating model, governance, automation and improvement priorities.</p><ul><li>Maturity and benchmark assessment</li><li>Capability gap analysis</li><li>Consultant validation</li><li>Transformation roadmap</li></ul><a class="btn launch" href="qmap.html" onclick="remember('QMAP')">Launch Quality Engineering Assessment →</a></article>
+      <article class="card ai"><div class="domain">Artificial Intelligence</div><h3>Assess responsible AI readiness and adoption potential.</h3><div class="powered">Powered by <b>AIDEN</b></div><p>Connect enterprise AI foundations with AI-enabled Quality Engineering adoption and measurable use-case prioritisation.</p><ul><li>Enterprise AI readiness</li><li>Responsible AI governance</li><li>AI-enabled QE opportunities</li><li>Adoption roadmap and value case</li></ul><a class="btn launch" href="aiden.html" onclick="remember('AIDEN')">Launch AI Readiness Assessment →</a></article>
+      <article class="card auto"><div class="domain">Automation Engineering</div><h3>Evaluate automation capability and modernisation priorities.</h3><div class="powered">Powered by <b>CRAFT</b></div><p>Use rapid factual inputs, evidence and contextual interpretation to assess automation engineering readiness.</p><ul><li>Rapid readiness scan</li><li>Evidence-led inference</li><li>Context-aware follow-up</li><li>Executive scorecard and roadmap</li></ul><a class="btn launch" href="craft.html" onclick="remember('CRAFT')">Launch Automation Assessment →</a></article>
+    </div>
+  </div>
+</div></section>
+
+<section id="profile" class="profile"><div class="container">
+  <div class="kicker">Future-ready shared context</div><div class="title">Create a lightweight organisation profile.</div><p class="desc">This release stores a common profile locally in the browser and prepares the platform for future shared data across accelerators.</p>
+  <div class="profile-box"><div class="fields">
+    <div class="field"><label>Organisation name</label><input id="org" placeholder="ABC Bank"></div>
+    <div class="field"><label>Industry</label><select id="industry"><option>Financial Services</option><option>Healthcare & Life Sciences</option><option>Retail & Consumer</option><option>Technology & SaaS</option><option>Manufacturing</option><option>Aviation & Travel</option><option>Telecom</option><option>Public Sector</option></select></div>
+    <div class="field"><label>Country / Region</label><input id="region" placeholder="India / North America"></div>
+    <div class="field"><label>Assessment owner</label><input id="owner" placeholder="Consultant or sponsor"></div>
+    <div class="field"><label>Assessment date</label><input id="date" type="date"></div>
+  </div><div class="profile-foot"><p>The shared profile is stored only in the local browser. The current standalone accelerators retain their own organisation fields and do not automatically consume this information yet.</p><button class="btn primary" onclick="saveProfile()">Save Organisation Profile</button></div></div>
+</div></section>
+
+<section><div class="container"><div class="kicker">A consistent consulting journey</div><div class="title">Designed for advisory conversations—not tool demonstrations.</div><p class="desc">FUSION provides a repeatable path while preserving the depth of each individual accelerator.</p><div class="journey"><div><span>01</span><h4>Discover</h4><p>Establish business context, current state and ambition.</p></div><div><span>02</span><h4>Assess</h4><p>Measure maturity and readiness through domain models.</p></div><div><span>03</span><h4>Validate</h4><p>Combine evidence, scoring and consultant judgement.</p></div><div><span>04</span><h4>Transform</h4><p>Convert findings into priorities, value and roadmaps.</p></div></div></div></section>
+
+<section class="vision"><div class="container"><div class="kicker">Platform evolution</div><div class="title">Built to grow into an enterprise advisory ecosystem.</div><p class="desc">FUSION v2 establishes a distinct executive advisory identity while retaining the current browser-based architecture.</p><div class="vision-grid"><div class="vision-main"><h3>One advisory experience. Multiple transformation domains.</h3><p>The platform can evolve from a unified portal into a shared workspace with integrated intelligence and executive reporting.</p><div class="roadmap"><div><b>FUSION v2</b><span>Executive portal and shared profile</span></div><div><b>Future release</b><span>Shared data and cross-accelerator analytics</span></div><div><b>Enterprise edition</b><span>Consolidated reporting and AI-backed advisory</span></div></div></div><div class="future"><div class="kicker">Expansion opportunities</div><h3>Future accelerators</h3><div class="future-list"><div>DevOps Readiness</div><div>Cloud Modernisation</div><div>Platform Engineering</div><div>Data & Analytics</div><div>DevSecOps</div><div>Product Engineering</div><div>Delivery Excellence</div><div>Enterprise Architecture</div></div></div></div></div></section>
+
+<footer><div class="foot"><div><b>Feuji FUSION</b><br><span>Executive Advisory Portal · Enterprise Transformation Accelerators</span></div><span>Executive Edition 2026</span></div></footer>
+<div id="toast" class="toast"></div>
+<script>
+const ids=["org","industry","region","owner","date"];
+function saveProfile(){const p={};ids.forEach(i=>p[i]=document.getElementById(i).value);try{localStorage.setItem("feujiFusionProfile",JSON.stringify(p));toast("Organisation profile saved locally.");}catch(e){toast("Profile could not be saved.");}}
+function restore(){try{const p=JSON.parse(localStorage.getItem("feujiFusionProfile")||"{}");ids.forEach(i=>{if(p[i]!==undefined)document.getElementById(i).value=p[i]})}catch(e){}if(!document.getElementById("date").value)document.getElementById("date").value=new Date().toISOString().slice(0,10)}
+function remember(n){try{localStorage.setItem("feujiFusionLastLaunch",JSON.stringify({name:n,time:new Date().toISOString()}))}catch(e){}}
+function toast(m){const t=document.getElementById("toast");t.textContent=m;t.style.display="block";setTimeout(()=>t.style.display="none",2500)}
+restore();
+</script>
+</body></html>
