@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CRAFT Executive Edition — Context-Aware Test Automation Readiness Accelerator | Feuji</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}:root{--or:#F05A1A;--ord:#C74810;--light:#FFF4EF;--ink:#191919;--dim:#666;--mut:#999;--bdr:#E6E6E6;--bg:#F6F6F6;--white:#fff;--green:#1A7A45;--amber:#A8650A;--red:#B92E24;--blue:#195FA8;--r:10px;--sh:0 2px 14px rgba(0,0,0,.07)}html,body{height:100%;font-family:Inter,sans-serif;background:var(--bg);color:var(--ink);font-size:13px;line-height:1.55}
+header{height:56px;background:#fff;border-bottom:3px solid var(--or);display:flex;align-items:center;padding:0 22px;position:sticky;top:0;z-index:500}.logo{font-size:22px;font-weight:700;color:var(--or)}.sep{width:1px;height:20px;background:#ddd;margin:0 11px}.prod b{font-size:11px;display:block}.prod span{font-size:10px;color:var(--dim)}.sp{flex:1}.hinput,.hselect{background:#f5f5f5;border:1.5px solid #d8d8d8;border-radius:6px;padding:7px 10px;font:12px Inter;margin-left:8px}.hstat{margin-left:8px;background:var(--light);border:1px solid #ffd8c8;border-radius:6px;padding:6px 10px;font-size:10px;color:#555}.hstat strong{color:var(--or);font:600 12px "JetBrains Mono"}
+.layout{display:grid;grid-template-columns:225px 1fr;height:calc(100vh - 56px)}aside{background:#fff;border-right:1px solid var(--bdr);overflow:auto;display:flex;flex-direction:column}.intro{padding:16px;border-bottom:1px solid var(--bdr);font-size:10px;color:var(--mut)}.grp{padding:12px 0 5px}.glabel{padding:0 15px 6px;font-size:9px;font-weight:700;color:var(--mut);text-transform:uppercase;letter-spacing:.12em}.nav{padding:9px 14px;border-left:3px solid transparent;display:flex;gap:9px;cursor:pointer;color:#444}.nav:hover{background:#fff8f5;color:var(--or)}.nav.active{background:var(--light);border-left-color:var(--or);color:var(--or);font-weight:600}.nav small{display:block;color:var(--mut);font-weight:400;font-size:9px}.foot{margin-top:auto;border-top:1px solid var(--bdr);padding:13px 15px;color:var(--mut);font-size:9px}main{overflow:auto}.view{display:none;padding:27px 30px 40px}.view.active{display:block}.ph{border-bottom:1px solid var(--bdr);padding-bottom:16px;margin-bottom:20px}.ey{font-size:10px;color:var(--or);font-weight:700;letter-spacing:.13em;text-transform:uppercase;margin-bottom:5px}h1{font-size:24px;line-height:1.2;margin-bottom:5px}.desc{font-size:12px;color:var(--dim);max-width:800px}
+.hero{background:#fff;border:1.5px solid var(--bdr);border-radius:14px;padding:24px;display:grid;grid-template-columns:1.25fr .75fr;gap:20px;box-shadow:var(--sh);margin-bottom:18px}.hero h2{font-size:28px;line-height:1.15;margin:7px 0}.tag{display:inline-block;background:var(--light);color:var(--or);border:1px solid #ffd8c8;border-radius:4px;padding:3px 8px;font-size:9px;font-weight:700}.stats{display:grid;grid-template-columns:1fr 1fr;gap:9px}.stat{background:#fafafa;border:1px solid var(--bdr);border-radius:9px;padding:13px}.stat b{display:block;color:var(--or);font:700 21px "JetBrains Mono"}.stat span{font-size:9px;color:var(--dim)}
+.card{background:#fff;border:1.5px solid var(--bdr);border-radius:var(--r);padding:16px;box-shadow:var(--sh)}.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.field{margin-bottom:12px}.field label{display:block;font-size:9px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px}.field input,.field select,.field textarea{width:100%;background:#f7f7f7;border:1.5px solid #d8d8d8;border-radius:6px;padding:8px 10px;font:12px Inter}.field textarea{min-height:90px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--or);background:#fff}
+.btn{padding:8px 16px;border-radius:6px;border:none;font:600 12px Inter;cursor:pointer}.primary{background:var(--or);color:#fff}.secondary{background:#fff;border:1.5px solid #d8d8d8;color:#444}.callout{background:#fff8f5;border:1.5px solid #ffd8c8;border-radius:9px;padding:13px 15px;font-size:11px;color:#555;margin-bottom:14px}
+.path{background:#fff;border:1.5px solid var(--bdr);border-radius:10px;padding:15px;cursor:pointer}.path.sel{border-color:var(--or);background:#fff8f5}.path h3{font-size:13px;margin-bottom:5px}.path p{font-size:10px;color:var(--dim)}.path b{display:block;font:600 10px "JetBrains Mono";color:var(--or);margin-top:7px}
+.upload{background:#fff;border:2px dashed #d0d0d0;border-radius:10px;padding:27px;text-align:center;cursor:pointer}.upload:hover{border-color:var(--or);background:#fff8f5}.doc{display:flex;gap:8px;align-items:center;background:#fff;border:1px solid var(--bdr);border-radius:6px;padding:9px 11px;margin-top:7px}.doc .name{flex:1}.small{font-size:9px;color:var(--mut)}.mono{font-family:"JetBrains Mono"}
+.chat{background:#fff;border:1.5px solid var(--bdr);border-radius:10px;overflow:hidden;box-shadow:var(--sh)}.chathead{background:#fafafa;border-bottom:1px solid var(--bdr);padding:11px 14px;display:flex;align-items:center;gap:8px}.messages{height:360px;overflow:auto;padding:14px;display:flex;flex-direction:column;gap:9px}.msg{max-width:78%;padding:9px 12px;border-radius:9px;font-size:11px}.ai{background:#f5f5f5;border:1px solid #e5e5e5;align-self:flex-start}.user{background:var(--light);border:1px solid #ffd8c8;align-self:flex-end}.chatinput{border-top:1px solid var(--bdr);padding:10px;display:flex;gap:8px}.chatinput input{flex:1;padding:8px 10px;border:1.5px solid #d8d8d8;border-radius:6px}.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.chip{background:#fff;border:1px solid #d8d8d8;border-radius:999px;padding:5px 8px;font-size:9px;cursor:pointer}.chip:hover{border-color:var(--or);color:var(--or)}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}.kpi{background:#fff;border:1.5px solid var(--bdr);border-radius:10px;padding:13px}.kv{font:700 21px "JetBrains Mono";color:var(--or)}.kl{font-size:10px;color:#555}.ks{font-size:9px;color:var(--mut)}.scoregrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.sc{background:#fff;border:1.5px solid var(--bdr);border-radius:10px;padding:13px;position:relative;overflow:hidden}.sc:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--or)}.scname{font-size:10px;height:30px;padding-left:7px}.scv{font:700 23px "JetBrains Mono";padding-left:7px}.smeta{font-size:9px;color:var(--mut);padding-left:7px}.bar{height:4px;background:#eee;border-radius:3px;margin:8px 0 0 7px}.fill{height:100%;border-radius:3px}
+.chart2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.chartbox{height:300px}table{width:100%;border-collapse:collapse;background:#fff}th{background:var(--or);color:#fff;text-align:left;padding:9px 10px;font-size:9px;text-transform:uppercase}td{padding:10px;border-bottom:1px solid #eee;font-size:11px;vertical-align:top}.tbl{border:1.5px solid var(--bdr);border-radius:10px;overflow:auto;box-shadow:var(--sh)}.badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:9px;font-weight:700}.critical{background:#ffebee;color:var(--red)}.high{background:#fff3df;color:var(--amber)}.medium{background:#edf6df;color:#557b21}.low{background:#e7f5eb;color:var(--green)}.advisor{background:#fff8f5;border-left:4px solid var(--or);padding:15px;border-radius:0 9px 9px 0;line-height:1.7}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}aside{display:none}.hero,.g2,.chart2{grid-template-columns:1fr}.g4,.kpis,.scoregrid{grid-template-columns:repeat(2,1fr)}}@media print{header,aside,.btn{display:none!important}.layout{display:block}main{overflow:visible}.view{display:block!important;page-break-before:always}}
+
+/* Executive Edition hardening */
+.exec-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:999px;background:#fff1e9;color:#F05A1A;border:1px solid #fed7aa;font-size:9px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;margin-left:8px}
+.runtime-alert{position:fixed;right:16px;bottom:16px;z-index:9999;max-width:420px;background:#fff;border:1px solid #fecaca;border-left:4px solid #b91c1c;border-radius:9px;padding:11px 13px;box-shadow:0 8px 28px rgba(0,0,0,.14);font:11px Inter,Arial,sans-serif;color:#7f1d1d}
+@media(max-width:720px){.exec-badge{display:none}}
+
+</style></head>
+<body>
+<header><div class="logo">feuji</div><div class="sep"></div><div class="prod"><b>CRAFT Executive Edition</b><span>Rapid Test Automation Readiness Accelerator</span></div><div class="sp"></div><input id="org" class="hinput" placeholder="Organisation name"><select id="sector" class="hselect"><option>Financial Services</option><option>Healthcare</option><option>Retail / E-Commerce</option><option>Technology / SaaS</option><option>Manufacturing</option><option>Telecom</option><option>Other</option></select><span class="exec-badge">Executive Edition</span><div class="hstat">Score <strong id="hscore">—</strong></div><div class="hstat">Confidence <strong id="hconf">0%</strong></div></header>
+<div class="layout"><aside>
+<div class="intro">CRAFT asks only what it cannot confidently infer.</div>
+<div class="grp"><div class="glabel">Rapid Assessment</div>
+<div class="nav active" onclick="show('welcome',this)">🏠 <div>Overview<small>Choose the fastest path</small></div></div>
+<div class="nav" onclick="show('scan',this)">⚡ <div>Rapid Scan<small>10 factual inputs · 3–5 min</small></div></div>
+<div class="nav" onclick="show('evidence',this)">📄 <div>Evidence Intake<small>Upload or paste artefacts</small></div></div>
+<div class="nav" onclick="show('advisor',this)">💬 <div>CRAFT Advisor<small>Adaptive follow-up only</small></div></div>
+<div class="nav" onclick="show('validate',this)">👤 <div>Consultant Validation<small>Review low-confidence areas</small></div></div></div>
+<div class="grp"><div class="glabel">Results</div>
+<div class="nav" onclick="result('score',this)">📊 <div>Readiness Scorecard</div></div>
+<div class="nav" onclick="result('charts',this)">📈 <div>Radar & Gaps</div></div>
+<div class="nav" onclick="result('priorities',this)">⚠ <div>Priorities</div></div>
+<div class="nav" onclick="result('roadmap',this)">🗺 <div>Roadmap</div></div>
+<div class="nav" onclick="result('exec',this)">📋 <div>Executive Summary</div></div></div>
+<div class="grp"><div class="glabel">Actions</div><div class="nav" onclick="loadDemo()">🧪 <div>Load Demonstration Data</div></div><div class="nav" onclick="window.print()">🖨 <div>Print / Save PDF</div></div><div class="nav" onclick="resetAll()">↺ <div>Reset</div></div></div>
+<div class="foot"><b style="color:var(--or)">CRAFT Executive Edition</b><br>Fast enough for discovery. Structured enough for consulting.</div>
+</aside><main>
+<section id="view-welcome" class="view active">
+<div class="hero"><div><span class="tag">NO RADIO-BUTTON ASSESSMENT</span><h2>Generate automation-readiness results in minutes</h2><p>CRAFT Executive Edition replaces the 40-question manual assessment with factual inputs, evidence-led inference and adaptive follow-up. The detailed maturity model remains behind the scenes.</p><div style="display:flex;gap:8px;margin-top:16px"><button class="btn primary" onclick="show('scan',document.querySelectorAll('.nav')[1])">Start Rapid Scan →</button><button class="btn secondary" onclick="loadDemo()">Load Demonstration Data</button></div></div><div class="stats"><div class="stat"><b>10</b><span>Factual inputs</span></div><div class="stat"><b>3–5</b><span>Minutes to preliminary score</span></div><div class="stat"><b>3–7</b><span>Adaptive follow-ups</span></div><div class="stat"><b>10</b><span>Hidden maturity dimensions</span></div></div></div>
+<div class="g3"><div class="path sel"><h3>Rapid Readiness Scan</h3><p>Enter observable facts such as coverage, regression duration, CI/CD integration and flakiness.</p><b>Fastest route</b></div><div class="path"><h3>Evidence-Led Assessment</h3><p>Upload framework, pipeline, reports, standards and automation inventories to increase confidence.</p><b>Higher confidence</b></div><div class="path"><h3>Consultant-Guided Discovery</h3><p>Use natural-language input. CRAFT asks only the questions needed to resolve missing or conflicting evidence.</p><b>Best for workshops</b></div></div>
+</section>
+
+<section id="view-scan" class="view"><div class="ph"><div class="ey">Rapid Scan</div><h1>Capture observable automation facts</h1><div class="desc">These inputs are easier to answer than maturity statements and are automatically mapped to the hidden scoring model.</div></div>
+<div class="g2"><div class="card">
+<div class="field"><label>Applications in scope</label><input id="apps" type="number" value="20"></div>
+<div class="field"><label>Current automation coverage (%)</label><input id="coverage" type="number" min="0" max="100" value="35"></div>
+<div class="field"><label>UI share of automated tests (%)</label><input id="uiShare" type="number" min="0" max="100" value="75"></div>
+<div class="field"><label>Regression duration (hours)</label><input id="regHours" type="number" value="48"></div>
+<div class="field"><label>Flaky-test rate (%)</label><input id="flaky" type="number" min="0" max="100" value="15"></div>
+</div><div class="card">
+<div class="field"><label>CI/CD integration</label><select id="cicd"><option value="0">No integration</option><option value="1">Partial / occasional</option><option value="2" selected>Core suites in pipeline</option><option value="3">Quality gates and parallel execution</option></select></div>
+<div class="field"><label>Test-data provisioning</label><select id="data"><option value="0">Manual / unmanaged</option><option value="1" selected>Reusable static datasets</option><option value="2">Automated setup and cleanup</option><option value="3">Synthetic, masked and on-demand</option></select></div>
+<div class="field"><label>Automation governance</label><select id="gov"><option value="0">No ownership or standards</option><option value="1" selected>Project-level ownership</option><option value="2">Shared standards and asset governance</option><option value="3">Enterprise CoE / product model</option></select></div>
+<div class="field"><label>NFR automation breadth</label><select id="nfr"><option value="0">Mostly functional UI</option><option value="1" selected>Some API / performance / security</option><option value="2">Multiple NFR types in release cycles</option><option value="3">Continuous cross-domain validation</option></select></div>
+<div class="field"><label>AI-assisted testing adoption</label><select id="ai"><option value="0" selected>Not started</option><option value="1">Exploration</option><option value="2">Pilots with controls</option><option value="3">Scaled and governed</option></select></div>
+</div></div><div style="margin-top:14px"><button class="btn primary" onclick="generateFromScan()">Generate Preliminary Results →</button></div></section>
+
+<section id="view-evidence" class="view"><div class="ph"><div class="ey">Evidence Intake</div><h1>Increase confidence using existing artefacts</h1><div class="desc">Upload automation material or paste a short current-state description. The standalone demo classifies filenames and narrative keywords locally.</div></div>
+<div class="callout"><b>Prototype transparency:</b> files remain local to the browser. Production implementation should analyse document content, cite exact evidence and apply security controls.</div>
+<div class="upload" onclick="document.getElementById('files').click()"><input id="files" type="file" multiple style="display:none" onchange="addFiles(this.files)"><div style="font-size:30px">📁</div><b>Select automation artefacts</b><p class="small">Framework architecture, pipeline config, execution report, test inventory, coding standards, dashboards or governance documents</p></div><div id="docs"></div>
+<div class="card" style="margin-top:14px"><div class="field"><label>Paste automation current-state narrative</label><textarea id="narrative" placeholder="Example: We use Selenium and Java for six applications. About 40% of regression is automated. Jenkins runs nightly. The suite takes six hours and roughly 18% of failures are flaky..."></textarea></div><button class="btn primary" onclick="analyseNarrative()">Analyse Narrative</button></div><div id="evidenceOut" style="margin-top:14px"></div></section>
+
+<section id="view-advisor" class="view"><div class="ph"><div class="ey">CRAFT Advisor</div><h1>Adaptive follow-up—not a questionnaire</h1><div class="desc">CRAFT asks only about low-confidence dimensions. Responses can be conversational.</div></div>
+<div class="chat"><div class="chathead">🤖 <div><b>CRAFT Advisor</b><div class="small">Context-aware local advisory engine · every response updates scoring</div></div><span class="small" style="margin-left:auto" id="followCount">0 follow-ups completed</span></div><div id="messages" class="messages"></div><div class="chatinput"><input id="chatText" placeholder="Type your response..." onkeydown="if(event.key==='Enter')sendChat()"><button class="btn primary" onclick="sendChat()">Send</button></div></div></section>
+
+<section id="view-validate" class="view"><div class="ph"><div class="ey">Consultant Validation</div><h1>Review only exceptions and low-confidence areas</h1><div class="desc">The consultant accepts, adjusts or comments on machine-generated scores without repeating the whole assessment.</div></div><div class="tbl"><table><thead><tr><th>Dimension</th><th>System Score</th><th>Confidence</th><th>Validated Score</th><th>Observation</th></tr></thead><tbody id="validateRows"></tbody></table></div></section>
+
+<section id="view-results" class="view">
+<div id="r-score"><div class="ph"><div class="ey">Results</div><h1>Automation Readiness Scorecard</h1><div class="desc">Preliminary results are available immediately and become more reliable as evidence and consultant validation are added.</div></div><div class="kpis"><div class="kpi"><div id="overall" class="kv">—</div><div class="kl">Weighted readiness</div><div id="level" class="ks">Pending</div></div><div class="kpi"><div id="target" class="kv">4.0</div><div class="kl">Enterprise target</div><div class="ks">Contextual target</div></div><div class="kpi"><div id="gap" class="kv">—</div><div class="kl">Readiness gap</div><div class="ks">To target</div></div><div class="kpi"><div id="confidence" class="kv">0%</div><div class="kl">Evidence confidence</div><div class="ks">Inputs + evidence</div></div><div class="kpi"><div id="source" class="kv">—</div><div class="kl">Primary source</div><div class="ks">Scoring method</div></div></div><div class="scoregrid" id="scoregrid"></div></div>
+<div id="r-charts" style="display:none"><div class="ph"><div class="ey">Visual Analysis</div><h1>Current state and weighted gaps</h1></div><div class="chart2"><div class="card"><b>Readiness Radar</b><div class="chartbox"><canvas id="radar"></canvas></div></div><div class="card"><b>Gap Priority</b><div class="chartbox"><canvas id="gapchart"></canvas></div></div></div></div>
+<div id="r-priorities" style="display:none"><div class="ph"><div class="ey">Priorities</div><h1>Highest-impact transformation areas</h1></div><div class="tbl"><table><thead><tr><th>#</th><th>Dimension</th><th>Score</th><th>Confidence</th><th>Priority</th><th>Recommended Action</th></tr></thead><tbody id="priorityRows"></tbody></table></div></div>
+<div id="r-roadmap" style="display:none"><div class="ph"><div class="ey">Roadmap</div><h1>Rapid transformation blueprint</h1></div><div class="g4" id="roadmap"></div></div>
+<div id="r-exec" style="display:none"><div class="ph"><div class="ey">Executive Summary</div><h1>Leadership-ready automation narrative</h1></div><div class="g2"><div class="card"><div class="ey">Readiness Position</div><div id="execScore" style="font:700 55px 'JetBrains Mono';color:var(--or)">—</div><div id="execLevel"></div><p id="execText" class="small" style="margin-top:10px"></p></div><div class="card"><div class="ey">Top Priorities</div><div id="execPriorities"></div></div></div><div id="advisorText" class="advisor" style="margin-top:14px"></div></div>
+</section>
+</main></div>
+<script>
+const DIMS=[{"id": "architecture", "name": "Framework Architecture", "weight": 1.15}, {"id": "coding", "name": "Coding & Scripting Standards", "weight": 1.1}, {"id": "coverage", "name": "Coverage Strategy", "weight": 1.15}, {"id": "data", "name": "Test Data & Environment Readiness", "weight": 1.0}, {"id": "cicd", "name": "CI/CD & Execution Governance", "weight": 1.15}, {"id": "governance", "name": "Governance, Ownership & CoE", "weight": 1.05}, {"id": "reporting", "name": "Metrics, Reporting & Observability", "weight": 1.0}, {"id": "nfr", "name": "Non-Functional & Cross-Domain Automation", "weight": 1.0}, {"id": "ai", "name": "AI-Augmented Automation Readiness", "weight": 1.0}, {"id": "skills", "name": "Skills, Adoption & Change Management", "weight": 0.95}]; const ACTIONS={"architecture": "Standardise the framework into reusable layers, shared libraries and governed extension points.", "coding": "Introduce mandatory coding standards, pull-request reviews, static checks and structured logging.", "coverage": "Create a risk-based coverage model across UI, API, data and critical business journeys.", "data": "Automate test-data provisioning, masking, cleanup, environment checks and dependency simulation.", "cicd": "Embed tiered suites into CI/CD with parallel execution, quality gates and flakiness SLAs.", "governance": "Define ownership, reusable-asset governance, technical-debt management and review cadence.", "reporting": "Implement dashboards for stability, coverage, defect yield, cycle time, ROI and release confidence.", "nfr": "Expand API, performance, security, accessibility and resilience automation using risk-based sequencing.", "ai": "Prepare structured assets, governed data and human-validation controls for AI-assisted automation.", "skills": "Build role-based enablement, coaching, communities of practice and measurable adoption pathways."};
+let scores={}, evidence={}, overrides={}, files=[], currentQuestion=null, followups=0, charts={}, primarySource='Rapid Scan';
+const labels=['','Ad-hoc','Developing','Stable','Managed','Optimised']; const colors=['','#B92E24','#A8650A','#6A8628','#1A7A45','#195FA8']; const TARGET=4.0;
+function show(id,el){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById('view-'+id).classList.add('active');document.querySelectorAll('.nav').forEach(n=>n.classList.remove('active'));if(el)el.classList.add('active')}
+function result(id,el){show('results',el);document.querySelectorAll('[id^="r-"]').forEach(x=>x.style.display='none');document.getElementById('r-'+id).style.display='block';refresh();if(id==='charts')setTimeout(()=>{charts.radar.resize();charts.gap.resize()},50)}
+function clamp(x,a=1,b=5){return Math.max(a,Math.min(b,x))}
+function setScore(id,val,source,conf){scores[id]=clamp(val);evidence[id]={source,conf:Math.max(evidence[id]?.conf||0,conf)}}
+function generateFromScan(){
+ coverage.value=Math.max(0,Math.min(100,+coverage.value||0));uiShare.value=Math.max(0,Math.min(100,+uiShare.value||0));flaky.value=Math.max(0,Math.min(100,+flaky.value||0));regHours.value=Math.max(0,+regHours.value||0);apps.value=Math.max(1,+apps.value||1);
+ const cov=+coverage.value, ui=+uiShare.value, hrs=+regHours.value, fl=+flaky.value, ci=+cicd.value, da=+data.value, go=+gov.value, nf=+nfr.value, av=+ai.value;
+ setScore('architecture', clamp(2.2+(100-fl)/100*1.4+(go*.25)), 'Rapid Scan', .55);
+ setScore('coding', clamp(2+(100-fl)/100*1.3+go*.3), 'Rapid Scan', .5);
+ setScore('coverage', clamp(1+cov/25+(100-ui)/100*.8), 'Rapid Scan', .7);
+ setScore('data', clamp(1.3+da*1.05), 'Rapid Scan', .75);
+ setScore('cicd', clamp(1.2+ci*.95+(hrs<=8?.6:hrs<=24?.3:0)), 'Rapid Scan', .8);
+ setScore('governance', clamp(1.2+go*1.05), 'Rapid Scan', .75);
+ setScore('reporting', clamp(1.8+ci*.45+go*.35), 'Rapid Scan', .45);
+ setScore('nfr', clamp(1.2+nf*1.1+(100-ui)/100*.5), 'Rapid Scan', .75);
+ setScore('ai', clamp(1+av*1.05+(go>=2?.3:0)), 'Rapid Scan', .75);
+ setScore('skills', clamp(1.8+go*.55+ci*.25), 'Rapid Scan', .4);
+ primarySource='Rapid Scan'; refresh(); buildAdvisor(); result('score',null);
+}
+function addFiles(list){[...list].forEach(f=>{let n=f.name.toLowerCase(),ds=[];if(/framework|selenium|playwright|cypress|appium|code/.test(n))ds.push('architecture','coding');if(/pipeline|jenkins|azure|github|yaml|yml|ci/.test(n))ds.push('cicd');if(/coverage|inventory|trace|test.case/.test(n))ds.push('coverage');if(/data|environment/.test(n))ds.push('data');if(/govern|standard|coe|strategy/.test(n))ds.push('governance','skills');if(/report|dashboard|execution|defect/.test(n))ds.push('reporting');if(/performance|security|accessibility|api/.test(n))ds.push('nfr');if(/ai|healing|predict/.test(n))ds.push('ai');files.push({name:f.name,dims:[...new Set(ds)]});ds.forEach(id=>{evidence[id]={source:'Uploaded Evidence',conf:Math.max(evidence[id]?.conf||0,.8)}})});renderFiles();refresh()}
+function renderFiles(){docs.innerHTML=files.map((f,i)=>`<div class="doc"><span>📄</span><span class="name">${f.name}</span><span class="small">${f.dims.join(', ')||'Consultant review'}</span><button class="btn secondary" onclick="files.splice(${i},1);renderFiles();refresh()">Remove</button></div>`).join('')}
+function analyseNarrative(){
+ let t=narrative.value.toLowerCase(); if(!t.trim())return;
+ function has(r){return r.test(t)}; let num=(r)=>{let m=t.match(r);return m?+m[1]:null};
+ let cov=num(/(\d+)\s*%[^.]*automat/); let flakyN=num(/(\d+)\s*%[^.]*flak/); let hours=num(/(\d+)\s*(?:hour|hr)/);
+ if(cov!=null)setScore('coverage',clamp(1+cov/25),'Narrative',.65);
+ if(flakyN!=null){setScore('architecture',clamp(4.5-flakyN/10),'Narrative',.65);setScore('coding',clamp(4.3-flakyN/11),'Narrative',.6)}
+ if(hours!=null)setScore('cicd',clamp(hours<=2?4.5:hours<=8?3.8:hours<=24?3:2.2),'Narrative',.6);
+ if(has(/jenkins|azure devops|github actions|pipeline|ci\/cd/))setScore('cicd',Math.max(scores.cicd||0,3.2),'Narrative',.7);
+ if(has(/api automation|rest assured|postman|contract test/))setScore('nfr',Math.max(scores.nfr||0,3.1),'Narrative',.65);
+ if(has(/manual test data|static data/))setScore('data',2.1,'Narrative',.6);
+ if(has(/synthetic data|masked data|automated data/))setScore('data',3.8,'Narrative',.7);
+ if(has(/coe|governance|standards|shared framework/))setScore('governance',3.4,'Narrative',.6);
+ if(has(/self-heal|ai-assisted|copilot|generative ai/))setScore('ai',3.0,'Narrative',.6);
+ primarySource='Evidence + Narrative'; evidenceOut.innerHTML='<div class="card"><b>Narrative analysed</b><p class="small">Preliminary maturity signals have been mapped. Use CRAFT Advisor to resolve low-confidence areas.</p></div>'; refresh();buildAdvisor();result('score',null);
+}
+function confidenceFor(id){return evidence[id]?.conf||0.25}
+function finalScore(id){return overrides[id]?+overrides[id]:scores[id]||0}
+function overall(){let s=0,w=0;DIMS.forEach(d=>{let v=finalScore(d.id);if(v){s+=v*d.weight;w+=d.weight}});return w?s/w:0}
+function level(v){return v?Math.max(1,Math.min(5,Math.round(v))):0}
+function avgConfidence(){return DIMS.reduce((a,d)=>a+confidenceFor(d.id),0)/DIMS.length}
+
+function persistExecutive(){try{localStorage.setItem('craftExecutive',JSON.stringify({scores,evidence,overrides,files,primarySource,followups,profile:{org:org.value,sector:sector.value,apps:apps.value,coverage:coverage.value,uiShare:uiShare.value,regHours:regHours.value,flaky:flaky.value,cicd:cicd.value,data:data.value,gov:gov.value,nfr:nfr.value,ai:ai.value}}))}catch(e){console.warn('CRAFT state persistence unavailable',e)}}
+function restoreExecutive(){try{let x=JSON.parse(localStorage.getItem('craftExecutive')||'null');if(!x)return;scores=x.scores||{};evidence=x.evidence||{};overrides=x.overrides||{};files=x.files||[];primarySource=x.primarySource||'Rapid Scan';followups=x.followups||0;Object.entries(x.profile||{}).forEach(([k,v])=>{let el=document.getElementById(k);if(el)el.value=v});renderFiles()}catch(e){console.warn('CRAFT state restore unavailable',e)}}
+
+function refresh(){
+ let o=overall(),l=level(o),conf=avgConfidence();hscore.textContent=o?o.toFixed(1):'—';hconf.textContent=Math.round(conf*100)+'%';
+ overallEl=document.getElementById('overall'); if(overallEl)overallEl.textContent=o?o.toFixed(1):'—';document.getElementById('level').textContent=o?`Level ${l} — ${labels[l]}`:'Pending';gap.textContent=o?Math.max(0,TARGET-o).toFixed(1):'—';confidence.textContent=Math.round(conf*100)+'%';source.textContent=primarySource;
+ scoregrid.innerHTML=DIMS.map(d=>{let v=finalScore(d.id),lv=level(v);return`<div class="sc"><div class="scname">${d.name}</div><div class="scv" style="color:${lv?colors[lv]:'#aaa'}">${v?v.toFixed(1):'—'}</div><div class="smeta">${v?labels[lv]:'Pending'} · ${Math.round(confidenceFor(d.id)*100)}% confidence · ${(evidence[d.id]?.source||'Unassessed')}</div><div class="bar"><div class="fill" style="width:${v?v/5*100:0}%;background:${lv?colors[lv]:'#ddd'}"></div></div></div>`}).join('');
+ refreshValidate();refreshPriorities();refreshRoadmap();refreshExec();refreshCharts();persistExecutive();
+}
+function refreshValidate(){validateRows.innerHTML=DIMS.map(d=>`<tr><td><b>${d.name}</b></td><td class="mono">${scores[d.id]?scores[d.id].toFixed(1):'—'}</td><td>${Math.round(confidenceFor(d.id)*100)}%</td><td><select onchange="overrides['${d.id}']=this.value;refresh()"><option value="">Accept system score</option>${[1,2,3,4,5].map(v=>`<option value="${v}" ${String(overrides[d.id])===String(v)?'selected':''}>${v.toFixed(1)}</option>`).join('')}</select></td><td><input style="width:100%;padding:6px" placeholder="Only where needed"></td></tr>`).join('')}
+function priorityList(){return DIMS.filter(d=>finalScore(d.id)>0).map(d=>{let v=finalScore(d.id),impact=(TARGET-v)*d.weight*(1+(1-confidenceFor(d.id))*.25);let p=impact>=2.4?'Critical':impact>=1.4?'High':impact>=.6?'Medium':'Low';return{d,v,p,impact}}).sort((a,b)=>b.impact-a.impact)}
+function refreshPriorities(){priorityRows.innerHTML=priorityList().map((x,i)=>`<tr><td class="mono">${String(i+1).padStart(2,'0')}</td><td><b>${x.d.name}</b></td><td class="mono">${x.v.toFixed(1)}</td><td>${Math.round(confidenceFor(x.d.id)*100)}%</td><td><span class="badge ${x.p.toLowerCase()}">${x.p}</span></td><td>${ACTIONS[x.d.id]}</td></tr>`).join('')}
+function refreshRoadmap(){let p=priorityList();let phases=[['0–30 Days','Validate & Stabilise'],['31–90 Days','Build Foundations'],['3–6 Months','Scale & Integrate'],['6–12 Months','Optimise & AI Enable']];roadmap.innerHTML=phases.map((ph,i)=>{let items=p.slice(i*3,i*3+3);return`<div class="card"><div class="ey">${ph[0]}</div><b>${ph[1]}</b>${items.map(x=>`<div style="padding:8px 0;border-bottom:1px solid #eee"><b style="font-size:10px">${x.d.name}</b><p class="small">${ACTIONS[x.d.id]}</p></div>`).join('')||'<p class="small" style="margin-top:8px">Measure outcomes and sustain adoption.</p>'}</div>`}).join('')}
+function refreshExec(){let o=overall(),l=level(o),p=priorityList().slice(0,4);execScore.textContent=o?o.toFixed(1):'—';execLevel.textContent=o?`Level ${l} — ${labels[l]}`:'Pending';execText.textContent=o?`The preliminary assessment was generated primarily from ${primarySource.toLowerCase()} with ${Math.round(avgConfidence()*100)}% average confidence. The largest gaps are concentrated in ${p.slice(0,2).map(x=>x.d.name).join(' and ')||'unassessed areas'}.`:'';execPriorities.innerHTML=p.map(x=>`<div style="padding:8px 0;border-bottom:1px solid #eee"><b>${x.d.name}</b> <span class="badge ${x.p.toLowerCase()}">${x.p}</span><p class="small">${ACTIONS[x.d.id]}</p></div>`).join('');advisorText.innerHTML=o?`<b>CRAFT Advisor:</b> Begin with ${p[0]?.d.name||'foundation validation'} and ${p[1]?.d.name||'automation governance'}. Validate the preliminary findings using available artefacts and a short consultant review. Advanced AI-assisted automation should follow only after framework stability, reusable assets, governance and pipeline signals reach an acceptable level.`:'Complete the rapid scan or evidence intake to generate the advisory narrative.'}
+function refreshCharts(){let vals=DIMS.map(d=>finalScore(d.id)||0),gps=DIMS.map(d=>finalScore(d.id)?Math.max(0,TARGET-finalScore(d.id))*d.weight:0);if(charts.radar){charts.radar.data.datasets[0].data=vals;charts.radar.update();charts.gap.data.datasets[0].data=gps;charts.gap.update()}}
+function buildAdvisor(){
+ messages.innerHTML=''; addMsg('I have generated a preliminary assessment. I will ask only about low-confidence areas.','ai'); nextQuestion();
+}
+const ADVISOR_MODEL={
+architecture:{
+ question:'How reusable is the automation framework across applications and teams?',
+ options:[
+  {text:'There is no common automation framework',score:1,reason:'automation is script-led without a shared framework'},
+  {text:'Each project has its own basic framework',score:2,reason:'frameworks exist but are fragmented by project'},
+  {text:'A reusable framework is shared by most teams',score:3,reason:'common components and patterns are used across most teams'},
+  {text:'An enterprise framework is governed, versioned and extensible',score:4,reason:'the framework is centrally governed and designed for reuse at scale'}
+ ]
+},
+coding:{
+ question:'How are automation coding standards and code reviews applied?',
+ options:[
+  {text:'No automation coding standards or reviews are enforced',score:1,reason:'automation code has no consistent engineering controls'},
+  {text:'Some teams use informal standards or occasional reviews',score:2,reason:'engineering discipline is partial and inconsistent'},
+  {text:'Documented standards and pull-request reviews apply to most teams',score:3,reason:'coding controls are defined and broadly adopted'},
+  {text:'Standards, reviews and automated quality checks are mandatory',score:4,reason:'coding quality is governed through both people and automated controls'}
+ ]
+},
+coverage:{
+ question:'How is automation coverage selected and traced to business risk?',
+ options:[
+  {text:'Teams automate whichever tests are easiest',score:1,reason:'coverage is not risk-based or traceable'},
+  {text:'Coverage is planned mainly for regression and visible pain points',score:2,reason:'some prioritisation exists but is not systematic'},
+  {text:'Critical journeys, APIs and requirements drive coverage decisions',score:3,reason:'coverage is risk-based and traceable for key areas'},
+  {text:'Coverage is continuously optimised using change, usage and defect risk',score:4,reason:'coverage decisions use live risk and engineering signals'}
+ ]
+},
+data:{
+ question:'How are test data and execution environments prepared for automation?',
+ options:[
+  {text:'Data and environments are prepared manually for each run',score:1,reason:'execution conditions depend heavily on manual preparation'},
+  {text:'Static reusable datasets exist but often become stale',score:2,reason:'some repeatability exists but data remains fragile'},
+  {text:'Data setup, cleanup and environment checks are automated',score:3,reason:'repeatable execution controls are in place'},
+  {text:'Masked or synthetic data is provisioned on demand with governance',score:4,reason:'data and environments are automated, compliant and scalable'}
+ ]
+},
+cicd:{
+ question:'How is automation used within CI/CD and release decisions?',
+ options:[
+  {text:'Tests are run manually outside the delivery pipeline',score:1,reason:'automation is disconnected from continuous delivery'},
+  {text:'Some suites run in CI but do not reliably influence releases',score:2,reason:'pipeline integration is partial'},
+  {text:'Core suites run automatically and failures can block releases',score:3,reason:'automation provides operational release control'},
+  {text:'Tiered suites, parallel execution and risk-based quality gates are used',score:4,reason:'continuous testing is optimised for fast release decisions'}
+ ]
+},
+governance:{
+ question:'Who owns automation standards, reusable assets and technical debt?',
+ options:[
+  {text:'Ownership depends on individual engineers or projects',score:1,reason:'accountability and standards are fragmented'},
+  {text:'Project leads provide informal ownership',score:2,reason:'ownership exists but enterprise governance is limited'},
+  {text:'Defined owners govern frameworks, assets and automation debt',score:3,reason:'roles and governance routines are established'},
+  {text:'An enterprise product or CoE model measures adoption and value',score:4,reason:'automation is governed as a strategic enterprise capability'}
+ ]
+},
+reporting:{
+ question:'Which automation health and business-value metrics are visible?',
+ options:[
+  {text:'Only manual test metrics or basic pass/fail counts are available',score:1,reason:'automation health and value are not meaningfully measured'},
+  {text:'Execution counts, pass rate and duration are reported periodically',score:2,reason:'basic operational reporting exists'},
+  {text:'Coverage, flakiness, defect yield and release confidence are visible',score:3,reason:'actionable automation health metrics are available'},
+  {text:'Dashboards connect automation to cost, speed, risk and business outcomes',score:4,reason:'automation value is measured for executive decisions'}
+ ]
+},
+nfr:{
+ question:'How broadly is automation applied beyond functional UI testing?',
+ options:[
+  {text:'Automation is almost entirely functional UI testing',score:1,reason:'cross-domain automation coverage is minimal'},
+  {text:'Some API, performance or security checks exist for selected releases',score:2,reason:'NFR automation is present but limited'},
+  {text:'API and multiple NFR checks are part of regular release validation',score:3,reason:'cross-domain automation supports release quality'},
+  {text:'Continuous API, performance, security and accessibility gates are used',score:4,reason:'NFR automation is embedded continuously across delivery'}
+ ]
+},
+ai:{
+ question:'How is AI-assisted testing being adopted and governed?',
+ options:[
+  {text:'AI-assisted testing has not started',score:1,reason:'there is no current AI-assisted testing capability'},
+  {text:'Individuals are experimenting without formal governance',score:2,reason:'AI use is exploratory and inconsistent'},
+  {text:'Controlled pilots have defined data, validation and success measures',score:3,reason:'AI adoption is structured and governed at pilot level'},
+  {text:'AI capabilities are scaled with auditability and human oversight',score:4,reason:'AI-assisted testing is governed and operationalised'}
+ ]
+},
+skills:{
+ question:'How are automation skills developed and adoption measured?',
+ options:[
+  {text:'Automation depends on a few individuals and learning is informal',score:1,reason:'capability is person-dependent and adoption is unmanaged'},
+  {text:'Tool training is provided when projects require it',score:2,reason:'enablement is reactive rather than systematic'},
+  {text:'Role-based learning, coaching and communities support most teams',score:3,reason:'structured capability development is broadly available'},
+  {text:'Skills and adoption are continuously measured against business outcomes',score:4,reason:'enablement and adoption are governed as measurable capabilities'}
+ ]
+}
+};
+function nextQuestion(){
+ let d=DIMS.filter(x=>confidenceFor(x.id)<.75).sort((a,b)=>confidenceFor(a.id)-confidenceFor(b.id))[0];
+ if(!d){
+  currentQuestion=null;
+  addMsg('I have completed the adaptive review. Every Advisor answer has been applied to the readiness score. You can now open the Scorecard or Consultant Validation screen.','ai');
+  let wrap=document.createElement('div');wrap.className='chips';
+  [['View updated scorecard',()=>result('score',null)],['Open consultant validation',()=>show('validate',null)]].forEach(([txt,fn])=>{let b=document.createElement('button');b.className='chip';b.textContent=txt;b.onclick=fn;wrap.appendChild(b)});
+  messages.appendChild(wrap);messages.scrollTop=messages.scrollHeight;return;
+ }
+ currentQuestion=d.id;
+ const model=ADVISOR_MODEL[d.id];
+ addMsg(model.question,'ai');
+ let wrap=document.createElement('div');wrap.className='chips';
+ model.options.forEach(o=>{let b=document.createElement('button');b.className='chip';b.textContent=o.text;b.onclick=()=>submitAdvisor(o.text,o.score,o.reason);wrap.appendChild(b)});
+ messages.appendChild(wrap);messages.scrollTop=messages.scrollHeight;
+}
+function addMsg(t,cls){let d=document.createElement('div');d.className='msg '+cls;d.textContent=t;messages.appendChild(d);messages.scrollTop=messages.scrollHeight}
+function sendChat(){let t=chatText.value.trim();if(!t)return;if(!currentQuestion){addMsg(t,'user');addMsg('The adaptive review is complete. Please use the Scorecard or Consultant Validation screen to continue.','ai');chatText.value='';return}let analysis=interpretAdvisorText(currentQuestion,t);submitAdvisor(t,analysis.score,analysis.reason);chatText.value=''}
+function interpretAdvisorText(id,text){
+ const t=text.toLowerCase().replace(/[^a-z0-9% ]/g,' ');
+ const neg=/\b(no|none|not|never|without|doesn t|isn t|aren t|manual|heavily manual|no where|nowhere|absent|does not exist|do not have)\b/;
+ const high=/\b(enterprise|mandatory|automated checks|measured|governed|all teams|continuous|on demand|quality gate|centrally managed|standardized across)\b/;
+ const medium=/\b(most teams|documented|regular|defined owners|pull request|pipeline|reusable|shared|risk based|automated setup)\b/;
+ const partial=/\b(some|partial|occasionally|basic|informal|selected|project level|static|pilot|exploring)\b/;
+ let score=neg.test(t)?1:high.test(t)?4:medium.test(t)?3:partial.test(t)?2:2;
+ let reason=score===1?'your response indicates the capability is absent, manual or not enforced':score===2?'your response indicates a partial or project-specific capability':score===3?'your response indicates a defined and broadly adopted capability':'your response indicates an enterprise-managed and measured capability';
+ if(id==='reporting' && /manual.*metric|metric.*manual|not.*automation|no.*automation metric/.test(t)){score=1;reason='you indicated that available metrics are manual and are not related to automation'}
+ if(id==='architecture' && /no.*framework|framework.*does not exist/.test(t)){score=1;reason='you indicated that no automation framework exists'}
+ if(id==='coding' && /no.*standard|not.*enforced|no.*review/.test(t)){score=1;reason='you indicated that coding standards or reviews are not enforced'}
+ if(id==='skills' && /manual|few individual|no training|informal/.test(t)){score=1;reason='you indicated that automation capability is manual or dependent on individuals'}
+ return {score,reason};
+}
+function submitAdvisor(text,score,reason){
+ const id=currentQuestion, old=finalScore(id), dimension=DIMS.find(d=>d.id===id);
+ addMsg(text,'user');
+ setScore(id,score,'CRAFT Advisor',.88);
+ primarySource='Rapid Scan + CRAFT Advisor';
+ followups++;followCount.textContent=followups+' follow-ups completed';
+ refresh();
+ const direction=!old?'set':score<old?'reduced':score>old?'increased':'confirmed';
+ addMsg(`I interpreted this as Level ${score} — ${labels[score]} because ${reason}. ${dimension.name} was ${direction}${old?` from ${old.toFixed(1)} to ${score.toFixed(1)}`:` at ${score.toFixed(1)}`}. The overall score has been recalculated to ${overall().toFixed(1)}.`,`ai`);
+ currentQuestion=null;
+ setTimeout(nextQuestion,250);
+}
+function initCharts(){Chart.defaults.font.family='Inter';Chart.defaults.color='#666';let labs=DIMS.map(d=>d.name);charts.radar=new Chart(radar,{type:'radar',data:{labels:labs,datasets:[{label:'Current',data:DIMS.map(()=>0),borderColor:'#F05A1A',backgroundColor:'rgba(240,90,26,.12)',pointBackgroundColor:'#F05A1A'},{label:'Target',data:DIMS.map(()=>TARGET),borderColor:'#195FA8',borderDash:[5,4],pointRadius:0,backgroundColor:'rgba(25,95,168,.03)'}]},options:{responsive:true,maintainAspectRatio:false,scales:{r:{min:0,max:5,ticks:{display:false},grid:{color:'#ddd'},angleLines:{color:'#ddd'},pointLabels:{font:{size:9}}}},plugins:{legend:{position:'bottom'}}}});charts.gap=new Chart(gapchart,{type:'bar',data:{labels:labs,datasets:[{data:DIMS.map(()=>0),backgroundColor:'#F05A1A',borderRadius:4}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{beginAtZero:true,max:5},y:{grid:{display:false}}}}})}
+function loadDemo(){org.value='NorthStar Financial Services';apps.value=40;coverage.value=42;uiShare.value=78;regHours.value=30;flaky.value=18;cicd.value=2;data.value=1;gov.value=1;nfr.value=1;ai.value=1;generateFromScan();files=[{name:'Automation_Framework_Architecture.pdf',dims:['architecture','coding']},{name:'Jenkins_Pipeline.yml',dims:['cicd']},{name:'Execution_Dashboard.xlsx',dims:['reporting','coverage']}];files.forEach(f=>f.dims.forEach(id=>evidence[id]={source:'Uploaded Evidence',conf:.8}));renderFiles();primarySource='Rapid Scan + Evidence';refresh();result('score',null)}
+function resetAll(){if(!confirm('Reset the complete CRAFT assessment?'))return;try{localStorage.removeItem('craftExecutive')}catch(e){};scores={};evidence={};overrides={};files=[];messages.innerHTML='';followups=0;renderFiles();refresh();show('welcome',document.querySelector('.nav'))}
+restoreExecutive();initCharts();refresh();buildAdvisor();
+
+window.addEventListener('error',function(e){try{var old=document.getElementById('runtimeAlert');if(old)old.remove();var n=document.createElement('div');n.id='runtimeAlert';n.className='runtime-alert';n.innerHTML='<b>CRAFT/QMAP/AIDEN notice:</b> A browser component could not be loaded. Refresh the page or verify internet access for chart rendering.';document.body.appendChild(n);setTimeout(function(){n.remove()},7000)}catch(_){}});
+</script></body></html>
