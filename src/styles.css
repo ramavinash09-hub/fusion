@@ -325,6 +325,8 @@ section {
 .recommendation,
 .profile-box,
 .service-card,
+.outcome-card,
+.compliance-card,
 .journey div,
 .card {
   background: #fff;
@@ -540,6 +542,38 @@ section {
   background: #fff;
 }
 
+.outcomes-section {
+  background: #fff;
+}
+
+.outcome-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 32px;
+}
+
+.outcome-card {
+  border-top: 4px solid var(--or);
+  min-height: 165px;
+  padding: 21px;
+}
+
+.outcome-card span {
+  color: var(--or);
+  display: block;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.11em;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.outcome-card p {
+  color: var(--mut);
+  font-size: 13px;
+}
+
 .service-grid {
   display: grid;
   gap: 14px;
@@ -563,6 +597,51 @@ section {
 .service-card h3 {
   font: 800 20px/1.18 Manrope, sans-serif;
   margin: 14px 0 10px;
+}
+
+.compliance-section {
+  background: #1a202b;
+  color: #fff;
+}
+
+.compliance-section .desc {
+  color: #c4cbd5;
+}
+
+.compliance-badge {
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 999px;
+  color: #86efac;
+  flex: 0 0 auto;
+  font-size: 11px;
+  font-weight: 900;
+  padding: 10px 13px;
+}
+
+.compliance-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 32px;
+}
+
+.compliance-card {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.12);
+  min-height: 170px;
+  padding: 20px;
+}
+
+.compliance-card b {
+  display: block;
+  font: 850 17px Manrope, sans-serif;
+  margin-bottom: 10px;
+}
+
+.compliance-card p {
+  color: #c4cbd5;
+  font-size: 12px;
 }
 
 .profile {
@@ -689,7 +768,9 @@ footer {
   }
 
   .cards,
-  .service-grid {
+  .service-grid,
+  .outcome-grid,
+  .compliance-grid {
     grid-template-columns: 1fr;
   }
 

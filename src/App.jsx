@@ -82,6 +82,32 @@ const servicePlays = [
   }
 ];
 
+const outcomeAreas = [
+  {
+    title: "Readiness clarity",
+    copy: "A common view of current maturity, evidence coverage and roadmap themes across accelerator modules."
+  },
+  {
+    title: "Decision support",
+    copy: "Executive-ready summaries that help teams compare priorities, dependencies and implementation choices."
+  },
+  {
+    title: "Practical roadmap",
+    copy: "A phased view of recommended actions, from discovery and validation through adoption and scale."
+  },
+  {
+    title: "Traceable assessment",
+    copy: "Evidence, assumptions and consultant inputs are kept visible so findings can be reviewed with confidence."
+  }
+];
+
+const compliancePrinciples = [
+  ["Security posture", "Designed to align with Feuji's ISO 27001-led information security practices."],
+  ["Privacy awareness", "Supports HIPAA-aware handling considerations for healthcare and regulated contexts."],
+  ["Evidence handling", "Uses customer artefacts for assessment context and keeps evidence references visible."],
+  ["Controlled usage", "Positions accelerator output as advisory guidance, with consultant validation before action."]
+];
+
 const transformationThemes = [
   ["01", "Contextualize", "Use evidence and customer context to establish a balanced readiness view."],
   ["02", "Align", "Connect readiness themes to relevant Feuji service capabilities."],
@@ -105,12 +131,12 @@ export default function App() {
 
   const recommendedMotion = useMemo(() => {
     if (/financial|healthcare|public/i.test(profile.industry)) {
-      return "Evidence-led discovery followed by a governed AI-QE readiness roadmap.";
+      return "Evidence-led discovery with governance, privacy and risk considerations reflected in the roadmap.";
     }
     if (/technology|saas/i.test(profile.industry)) {
-      return "Product engineering, automation modernization and AI-enabled quality intelligence review.";
+      return "Product engineering, automation and AI-enabled quality intelligence review with a platform lens.";
     }
-    return "Cross-domain readiness scan followed by a practical 90-day transformation roadmap.";
+    return "Cross-domain readiness review followed by a practical, evidence-informed transformation roadmap.";
   }, [profile.industry]);
 
   useEffect(() => {
@@ -193,7 +219,7 @@ export default function App() {
               across product engineering, quality engineering, automation, AI,
               cloud, infra, data and analytics. FUSION brings together
               evidence-led accelerators, readiness views and practical roadmap
-              outputs in a consistent experience.
+              outputs in an industry-aware and compliance-conscious experience.
             </p>
             <div className="hero-actions">
               <a className="btn primary" href="#command">
@@ -220,12 +246,12 @@ export default function App() {
                   <span>capability areas</span>
                 </div>
                 <div>
-                  <strong>90</strong>
-                  <span>day roadmap lens</span>
+                  <strong>ISO</strong>
+                  <span>security-aware posture</span>
                 </div>
               </div>
               <div className="insight-box">
-                <span>Recommended motion</span>
+                <span>Contextual guidance</span>
                 <p>{recommendedMotion}</p>
               </div>
               <div className="mini-flow">
@@ -246,7 +272,9 @@ export default function App() {
                 <p className="desc">
                   FUSION provides an executive-level view of readiness themes,
                   accelerator coverage and relevant Feuji capability areas
-                  before users move into detailed accelerator screens.
+                  before users move into detailed accelerator screens. Industry
+                  context adjusts the lens; the accelerators remain applicable
+                  across industries.
                 </p>
               </div>
               <a className="btn primary" href="#profile">
@@ -282,12 +310,13 @@ export default function App() {
               </div>
 
               <div className="recommendation">
-                <div className="kicker">Suggested engagement pathway</div>
+                <div className="kicker">Suggested assessment pathway</div>
                 <h3>{recommendedMotion}</h3>
                 <p>
                   Use the accelerators to validate the baseline and convert
                   the findings into a customer-ready roadmap, summary and
-                  implementation direction.
+                  implementation direction. Outputs are intended to support
+                  discussion and planning, not replace expert validation.
                 </p>
                 <div className="recommended-stack">
                   <span>Discovery workshop</span>
@@ -337,6 +366,26 @@ export default function App() {
           </div>
         </section>
 
+        <section className="outcomes-section">
+          <div className="container">
+            <div className="kicker">Customer-facing outcomes</div>
+            <div className="title">What the FUSION demo should make visible.</div>
+            <p className="desc">
+              The platform should not simply show assessment screens. It should
+              demonstrate how evidence, accelerator logic and consulting review
+              come together to produce clear, practical outputs.
+            </p>
+            <div className="outcome-grid">
+              {outcomeAreas.map((area) => (
+                <div className="outcome-card" key={area.title}>
+                  <span>{area.title}</span>
+                  <p>{area.copy}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="service-section">
           <div className="container">
             <div className="kicker">Feuji capability alignment</div>
@@ -352,6 +401,32 @@ export default function App() {
                   <span>{play.title}</span>
                   <h3>{play.trigger}</h3>
                   <p>{play.offer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="compliance-section">
+          <div className="container">
+            <div className="section-head">
+              <div>
+                <div className="kicker">Security and compliance posture</div>
+                <div className="title">Built for regulated and cross-industry advisory contexts.</div>
+                <p className="desc">
+                  FUSION should be presented as an accelerator platform that is
+                  mindful of information security, privacy and customer evidence
+                  handling. The industry selection adapts context; it does not
+                  restrict platform applicability.
+                </p>
+              </div>
+              <span className="compliance-badge">ISO 27001 · HIPAA-aware</span>
+            </div>
+            <div className="compliance-grid">
+              {compliancePrinciples.map(([title, copy]) => (
+                <div className="compliance-card" key={title}>
+                  <b>{title}</b>
+                  <p>{copy}</p>
                 </div>
               ))}
             </div>
@@ -377,7 +452,7 @@ export default function App() {
                   />
                 </label>
                 <label className="field">
-                  <span>Industry</span>
+                  <span>Industry context</span>
                   <select
                     value={profile.industry}
                     onChange={(event) => updateProfile("industry", event.target.value)}
@@ -414,10 +489,11 @@ export default function App() {
               </div>
               <div className="profile-foot">
                 <p>
-                  This release stores the profile locally in the browser. The next
-                  platform step is to let QMAP, CRAFT and AIDEN consume one shared
-                  customer profile and publish their findings back into this
-                  command center.
+                  This release stores the profile locally in the browser.
+                  Industry context is used to tune language, benchmarks and
+                  roadmap considerations. QMAP, CRAFT and AIDEN are intended to
+                  remain reusable across industries, with compliance and privacy
+                  expectations addressed through the engagement model.
                 </p>
                 <button className="btn primary" type="button" onClick={saveProfile}>
                   Save Profile
