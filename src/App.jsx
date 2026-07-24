@@ -18,18 +18,18 @@ const accelerators = [
     key: "qmap",
     name: "QMAP",
     domain: "Quality Engineering",
-    headline: "Identify QE maturity gaps and transformation priorities.",
+    headline: "Understand QE maturity and transformation priorities.",
     signal: "Release confidence, operating model, metrics, governance and QE maturity.",
     href: "/qmap.html",
     service: "Quality Engineering Transformation",
     accent: "orange",
-    points: ["QE maturity baseline", "Gap heatmap", "Benchmarks", "Roadmap"]
+    points: ["QE maturity baseline", "Readiness heatmap", "Benchmarks", "Roadmap"]
   },
   {
     key: "craft",
     name: "CRAFT",
     domain: "Automation Engineering",
-    headline: "Find automation modernization and delivery acceleration opportunities.",
+    headline: "Evaluate automation readiness and modernization priorities.",
     signal: "Manual effort, automation debt, framework health, CI/CD fit and execution readiness.",
     href: "/craft.html",
     service: "Automation Modernization",
@@ -52,41 +52,41 @@ const accelerators = [
 const servicePlays = [
   {
     title: "Product Engineering",
-    trigger: "Slow feature throughput, weak product ownership or fragmented engineering ways of working.",
+    trigger: "Product delivery, ownership and engineering ways of working need a structured review.",
     offer: "Product engineering acceleration, delivery model redesign and platform-led product squads."
   },
   {
     title: "Quality Engineering",
-    trigger: "Low release confidence, inconsistent quality gates, escaped defects or poor QE metrics.",
+    trigger: "Release confidence, quality gates, defect trends or QE metrics need a clearer operating view.",
     offer: "QE transformation, test strategy, governance, metrics and managed QE services."
   },
   {
     title: "Automation",
-    trigger: "Manual regression load, brittle scripts, low automation coverage or long validation cycles.",
+    trigger: "Regression effort, automation coverage, framework health or validation cycle time need review.",
     offer: "Automation modernization, framework engineering, CI/CD integration and regression optimization."
   },
   {
     title: "AI",
-    trigger: "AI ambition without governance, unclear use cases or low confidence in AI adoption readiness.",
+    trigger: "AI readiness, governance, use-case feasibility or adoption controls need structured assessment.",
     offer: "AI advisory, responsible AI foundations, AI-enabled QE pilots and adoption roadmap."
   },
   {
     title: "Cloud and Infra",
-    trigger: "Environment instability, scaling constraints, release friction or infrastructure bottlenecks.",
+    trigger: "Environment reliability, scalability, release flow or platform foundations need review.",
     offer: "Cloud modernization, DevOps enablement, environment reliability and platform engineering."
   },
   {
     title: "Data and Analytics",
-    trigger: "Disconnected lifecycle data, weak reporting, poor traceability or limited decision intelligence.",
+    trigger: "Lifecycle data, reporting, traceability or decision intelligence need a connected view.",
     offer: "Data foundation, engineering analytics, quality intelligence and executive dashboards."
   }
 ];
 
 const transformationThemes = [
-  ["01", "Diagnose", "Use evidence and customer context to identify cross-domain transformation gaps."],
-  ["02", "Map", "Connect gaps to Feuji service offerings and practical engagement motions."],
-  ["03", "Prioritize", "Separate foundation work, pilot opportunities and scale candidates."],
-  ["04", "Propose", "Generate roadmap, value case and executive recommendation for the customer."]
+  ["01", "Contextualize", "Use evidence and customer context to establish a balanced readiness view."],
+  ["02", "Align", "Connect readiness themes to relevant Feuji service capabilities."],
+  ["03", "Prioritize", "Separate foundational actions, pilot candidates and scale considerations."],
+  ["04", "Guide", "Create a practical roadmap, value view and executive summary."]
 ];
 
 function getDefaultDate() {
@@ -105,12 +105,12 @@ export default function App() {
 
   const recommendedMotion = useMemo(() => {
     if (/financial|healthcare|public/i.test(profile.industry)) {
-      return "Evidence-led discovery followed by a governed AI-QE pilot and QE transformation roadmap.";
+      return "Evidence-led discovery followed by a governed AI-QE readiness roadmap.";
     }
     if (/technology|saas/i.test(profile.industry)) {
-      return "Product engineering, automation modernization and AI-enabled quality intelligence pilot.";
+      return "Product engineering, automation modernization and AI-enabled quality intelligence review.";
     }
-    return "Cross-domain readiness scan followed by a 90-day transformation opportunity roadmap.";
+    return "Cross-domain readiness scan followed by a practical 90-day transformation roadmap.";
   }, [profile.industry]);
 
   useEffect(() => {
@@ -186,13 +186,14 @@ export default function App() {
           <div className="hero-copy">
             <div className="eyebrow">Feuji Enterprise Advisory</div>
             <h1 id="hero-title">
-              FUSION turns customer gaps into Feuji transformation opportunities.
+              FUSION brings Feuji accelerators into one structured transformation platform.
             </h1>
             <p>
-              A front door for consultative selling across product engineering,
-              quality engineering, automation, AI, cloud, infra, data and analytics.
-              FUSION uses evidence-led accelerators to diagnose readiness, map gaps
-              to Feuji offerings and shape the next best engagement.
+              A customer-facing platform for structured advisory conversations
+              across product engineering, quality engineering, automation, AI,
+              cloud, infra, data and analytics. FUSION brings together
+              evidence-led accelerators, readiness views and practical roadmap
+              outputs in a consistent experience.
             </p>
             <div className="hero-actions">
               <a className="btn primary" href="#command">
@@ -206,8 +207,8 @@ export default function App() {
           <div className="hero-art">
             <div className="command-card">
               <div className="panel-top">
-                <span>FUSION advisory signal</span>
-                <b>{profile.org || "Target Customer"}</b>
+                <span>FUSION platform view</span>
+                <b>{profile.org || "Sample Organisation"}</b>
               </div>
               <div className="signal-grid">
                 <div>
@@ -216,7 +217,7 @@ export default function App() {
                 </div>
                 <div>
                   <strong>6</strong>
-                  <span>service plays</span>
+                  <span>capability areas</span>
                 </div>
                 <div>
                   <strong>90</strong>
@@ -228,7 +229,7 @@ export default function App() {
                 <p>{recommendedMotion}</p>
               </div>
               <div className="mini-flow">
-                {["Evidence", "Gaps", "Offerings", "Roadmap"].map((item) => (
+                {["Evidence", "Readiness", "Capabilities", "Roadmap"].map((item) => (
                   <i key={item}>{item}</i>
                 ))}
               </div>
@@ -243,9 +244,9 @@ export default function App() {
                 <div className="kicker">Executive command center</div>
                 <div className="title">One platform view before the accelerator drill-down.</div>
                 <p className="desc">
-                  FUSION should make the executive answer visible early: where
-                  the customer has gaps, which Feuji offerings fit, and what
-                  engagement should be proposed next.
+                  FUSION provides an executive-level view of readiness themes,
+                  accelerator coverage and relevant Feuji capability areas
+                  before users move into detailed accelerator screens.
                 </p>
               </div>
               <a className="btn primary" href="#profile">
@@ -256,7 +257,7 @@ export default function App() {
             <div className="command-layout">
               <div className="snapshot">
                 <div className="snapshot-head">
-                  <span>Opportunity snapshot</span>
+                  <span>Readiness snapshot</span>
                   <b>{profile.industry}</b>
                 </div>
                 <div className="readiness-bars">
@@ -281,12 +282,12 @@ export default function App() {
               </div>
 
               <div className="recommendation">
-                <div className="kicker">Next best Feuji play</div>
+                <div className="kicker">Suggested engagement pathway</div>
                 <h3>{recommendedMotion}</h3>
                 <p>
-                  Use the accelerators to validate the baseline, then convert
-                  the findings into a customer-ready roadmap and commercial
-                  entry point.
+                  Use the accelerators to validate the baseline and convert
+                  the findings into a customer-ready roadmap, summary and
+                  implementation direction.
                 </p>
                 <div className="recommended-stack">
                   <span>Discovery workshop</span>
@@ -302,11 +303,11 @@ export default function App() {
         <section id="accelerators">
           <div className="container">
             <div className="kicker">Evidence-led accelerators</div>
-            <div className="title">Use the right diagnostic for the customer gap.</div>
+            <div className="title">Use the right accelerator for the transformation question.</div>
             <p className="desc">
               QMAP, CRAFT and AIDEN become the domain engines underneath the
-              FUSION executive layer. Each can operate independently or feed the
-              wider transformation story.
+              FUSION executive layer. Each can operate independently or
+              contribute to a wider transformation roadmap.
             </p>
             <div className="cards">
               {accelerators.map((accelerator) => (
@@ -322,7 +323,7 @@ export default function App() {
                       <li key={point}>{point}</li>
                     ))}
                   </ul>
-                  <div className="service-map">Maps to: {accelerator.service}</div>
+                  <div className="service-map">Aligned capability: {accelerator.service}</div>
                   <a
                     className="btn launch"
                     href={accelerator.href}
@@ -338,12 +339,12 @@ export default function App() {
 
         <section className="service-section">
           <div className="container">
-            <div className="kicker">Feuji offering map</div>
-            <div className="title">Turn assessment findings into service entry points.</div>
+            <div className="kicker">Feuji capability alignment</div>
+            <div className="title">Relate accelerator outputs to Feuji service capabilities.</div>
             <p className="desc">
-              This is the platform story your SVP should hear: FUSION helps
-              Feuji identify the customer problem and recommend the most relevant
-              service motion.
+              FUSION keeps the discussion structured by showing which Feuji
+              capabilities are relevant to different transformation themes,
+              without turning the platform into a sales-heavy experience.
             </p>
             <div className="service-grid">
               {servicePlays.map((play) => (
@@ -360,9 +361,9 @@ export default function App() {
         <section id="profile" className="profile">
           <div className="container">
             <div className="kicker">Customer context</div>
-            <div className="title">Create a lightweight opportunity profile.</div>
+            <div className="title">Create a lightweight organisation profile.</div>
             <p className="desc">
-              This shared profile sets the customer context for the FUSION
+              This shared profile sets the organisation context for the FUSION
               narrative and prepares the platform for cross-accelerator data.
             </p>
             <div className="profile-box">
@@ -395,7 +396,7 @@ export default function App() {
                   />
                 </label>
                 <label className="field">
-                  <span>Opportunity owner</span>
+                  <span>Review owner</span>
                   <input
                     value={profile.owner}
                     placeholder="Consultant or sponsor"
@@ -428,8 +429,8 @@ export default function App() {
 
         <section className="journey-section">
           <div className="container">
-            <div className="kicker">SVP-ready platform narrative</div>
-            <div className="title">FUSION is the front door to consultative selling.</div>
+            <div className="kicker">Platform narrative</div>
+            <div className="title">FUSION is a unified accelerator platform for transformation advisory.</div>
             <div className="journey">
               {transformationThemes.map(([number, heading, copy]) => (
                 <div key={number}>
