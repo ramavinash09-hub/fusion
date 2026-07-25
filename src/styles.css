@@ -8,6 +8,8 @@
   --paper: #fff8f3;
   --white: #ffffff;
   --green: #14a06f;
+  --qe-green: #12b76a;
+  --qe-blue: #2563eb;
   --violet: #7067e8;
   --blue: #2f6df6;
   --shadow: 0 24px 70px rgba(144, 63, 21, 0.14);
@@ -345,6 +347,32 @@ nav {
   z-index: 1;
 }
 
+.node-map i::after,
+.dash-metric::before,
+.impact-card::before,
+.compliance-tile::before {
+  background: linear-gradient(90deg, var(--orange), var(--qe-green), var(--qe-blue));
+  border-radius: 999px;
+  content: "";
+  height: 3px;
+  left: 14px;
+  opacity: 0.5;
+  position: absolute;
+  right: 14px;
+  top: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.node-map i:hover::after,
+.dash-metric:hover::before,
+.impact-card:hover::before,
+.compliance-tile:hover::before {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
 .node-map i:hover {
   border-color: rgba(241, 90, 36, 0.35);
   box-shadow: 0 18px 38px rgba(144, 63, 21, 0.13);
@@ -644,11 +672,22 @@ nav {
 
 .meter b {
   animation: meterGrow 1.1s ease-out both;
-  background: linear-gradient(90deg, var(--orange), var(--orange-2));
+  background: linear-gradient(90deg, var(--orange), var(--qe-green), var(--qe-blue));
+  background-size: 180% 100%;
   border-radius: inherit;
   box-shadow: 0 0 18px rgba(241, 90, 36, 0.26);
   display: block;
   height: 100%;
+  position: relative;
+}
+
+.meter b::after {
+  animation: meterSignal 2.8s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+  content: "";
+  inset: 0;
+  position: absolute;
+  transform: translateX(-100%);
 }
 
 .journey-section {
@@ -656,6 +695,28 @@ nav {
     radial-gradient(circle at 20% 20%, rgba(241, 90, 36, 0.18), transparent 32%),
     linear-gradient(135deg, #fff7f0, #ffffff);
   color: var(--ink);
+  overflow: hidden;
+  position: relative;
+}
+
+.journey-section::before {
+  animation: qeScan 12s linear infinite;
+  background:
+    linear-gradient(90deg, transparent, rgba(18, 183, 106, 0.12), transparent),
+    linear-gradient(90deg, rgba(241, 90, 36, 0.06) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(241, 90, 36, 0.045) 1px, transparent 1px);
+  background-size: 48% 100%, 42px 42px, 42px 42px;
+  content: "";
+  inset: 0;
+  opacity: 0.7;
+  pointer-events: none;
+  position: absolute;
+  transform: translateX(-45%);
+}
+
+.journey-section > * {
+  position: relative;
+  z-index: 1;
 }
 
 .journey-section p {
@@ -667,22 +728,52 @@ nav {
   gap: 10px;
   grid-template-columns: repeat(9, 1fr);
   margin-top: 30px;
+  position: relative;
+}
+
+.journey::before {
+  animation: flowRail 3.8s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, rgba(241, 90, 36, 0.25), rgba(18, 183, 106, 0.36), transparent);
+  content: "";
+  height: 3px;
+  left: 2%;
+  position: absolute;
+  right: 2%;
+  top: 54px;
+  transform-origin: left center;
+  z-index: 0;
 }
 
 .journey-step {
-  background: rgba(255, 255, 255, 0.9);
+  background:
+    linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(135deg, rgba(241, 90, 36, 0.2), rgba(18, 183, 106, 0.18)) border-box;
   border: 1px solid rgba(241, 90, 36, 0.14);
   border-radius: 18px;
   box-shadow: 0 12px 30px rgba(144, 63, 21, 0.08);
+  isolation: isolate;
   min-height: 116px;
+  overflow: hidden;
   padding: 14px;
   position: relative;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  z-index: 1;
+}
+
+.journey-step::before {
+  animation: cardSweep 5.5s ease-in-out infinite;
+  background: linear-gradient(115deg, transparent 18%, rgba(255, 255, 255, 0.9) 45%, transparent 70%);
+  content: "";
+  inset: 0;
+  opacity: 0;
+  position: absolute;
+  transform: translateX(-120%);
+  z-index: -1;
 }
 
 .journey-step:hover {
-  border-color: rgba(241, 90, 36, 0.34);
-  box-shadow: 0 18px 42px rgba(144, 63, 21, 0.13);
+  border-color: rgba(18, 183, 106, 0.38);
+  box-shadow: 0 20px 46px rgba(18, 183, 106, 0.12), 0 18px 42px rgba(144, 63, 21, 0.11);
   transform: translateY(-5px);
 }
 
@@ -697,12 +788,35 @@ nav {
 }
 
 .journey-step i {
+  align-items: center;
+  background: #fff5ef;
+  border: 1px solid rgba(241, 90, 36, 0.18);
+  border-radius: 999px;
   color: var(--orange);
-  display: block;
+  display: inline-flex;
   font-style: normal;
   font-weight: 900;
+  height: 30px;
+  justify-content: center;
   margin-bottom: 10px;
   transition: transform 0.25s ease;
+  width: 30px;
+}
+
+.journey-step:nth-child(4) i,
+.journey-step:nth-child(5) i,
+.journey-step:nth-child(7) i,
+.journey-step:nth-child(8) i {
+  background: #ecfdf3;
+  border-color: rgba(18, 183, 106, 0.24);
+  color: var(--qe-green);
+}
+
+.journey-step:nth-child(6) i,
+.journey-step:nth-child(9) i {
+  background: #eff6ff;
+  border-color: rgba(37, 99, 235, 0.18);
+  color: var(--qe-blue);
 }
 
 .journey-step:hover i {
@@ -840,6 +954,7 @@ select:focus {
   box-shadow: 0 12px 28px rgba(144, 63, 21, 0.07);
   padding: 18px;
   position: relative;
+  overflow: hidden;
   transition: transform 0.24s ease, box-shadow 0.24s ease;
 }
 
@@ -958,7 +1073,9 @@ select:focus {
 
 .impact-card {
   min-height: 190px;
+  overflow: hidden;
   padding: 20px;
+  position: relative;
   transition: transform 0.24s ease, box-shadow 0.24s ease;
 }
 
@@ -1001,7 +1118,9 @@ select:focus {
   box-shadow: 0 12px 30px rgba(144, 63, 21, 0.07);
   color: var(--ink);
   min-height: 112px;
+  overflow: hidden;
   padding: 18px;
+  position: relative;
   transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease;
 }
 
@@ -1175,6 +1294,58 @@ footer span {
 
   to {
     clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes meterSignal {
+  0%,
+  35% {
+    transform: translateX(-100%);
+  }
+
+  70%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes qeScan {
+  0% {
+    transform: translateX(-45%);
+  }
+
+  100% {
+    transform: translateX(65%);
+  }
+}
+
+@keyframes flowRail {
+  0%,
+  100% {
+    opacity: 0.34;
+    transform: scaleX(0.2);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes cardSweep {
+  0%,
+  62% {
+    opacity: 0;
+    transform: translateX(-120%);
+  }
+
+  72% {
+    opacity: 0.58;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(120%);
   }
 }
 
