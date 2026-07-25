@@ -694,11 +694,9 @@ nav {
     radial-gradient(circle at 82% 82%, rgba(255, 138, 76, 0.16), transparent 28%),
     linear-gradient(135deg, #fff8f2, #ffffff);
   color: var(--ink);
-  display: grid;
-  gap: 42px;
-  grid-template-columns: 0.85fr 1.15fr;
   overflow: hidden;
   position: relative;
+  text-align: center;
 }
 
 .journey-section::before {
@@ -726,59 +724,62 @@ nav {
 }
 
 .journey-section h2 {
-  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 980px;
 }
 
 .journey {
   counter-reset: journey;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin: 34px 0 0;
-  max-width: 980px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(9, minmax(96px, 1fr));
+  margin: 42px auto 0;
+  max-width: 1320px;
   position: relative;
+  text-align: left;
 }
 
 .journey::before {
-  background: linear-gradient(180deg, rgba(241, 90, 36, 0.08), rgba(241, 90, 36, 0.28), rgba(241, 90, 36, 0.08));
+  background: linear-gradient(90deg, transparent, rgba(241, 90, 36, 0.2), rgba(241, 90, 36, 0.2), transparent);
   content: "";
-  bottom: 18px;
-  left: 21px;
+  height: 2px;
+  left: 5%;
   position: absolute;
-  top: 18px;
-  width: 2px;
+  right: 5%;
+  top: 56px;
   z-index: 0;
 }
 
 .journey::after {
-  animation: processRunVertical 8s cubic-bezier(0.72, 0, 0.28, 1) infinite;
-  background: linear-gradient(180deg, transparent, var(--orange), var(--orange-2), transparent);
+  animation: routeRunner 8s cubic-bezier(0.72, 0, 0.28, 1) infinite;
+  background: linear-gradient(90deg, transparent, var(--orange), var(--orange-2), transparent);
   border-radius: 999px;
   box-shadow: 0 0 22px rgba(241, 90, 36, 0.35);
   content: "";
-  height: 120px;
-  left: 20px;
+  height: 4px;
+  left: 5%;
   position: absolute;
-  top: 0;
-  width: 4px;
+  top: 55px;
+  width: 14%;
   z-index: 0;
 }
 
 .journey-step {
-  align-items: center;
+  align-items: flex-start;
   background:
     linear-gradient(#fff, #fff) padding-box,
     linear-gradient(135deg, rgba(241, 90, 36, 0.26), rgba(255, 138, 76, 0.12)) border-box;
   border: 1px solid rgba(241, 90, 36, 0.14);
   border-radius: 18px;
   box-shadow: 0 10px 28px rgba(144, 63, 21, 0.07);
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 16px;
-  grid-template-columns: 44px 1fr;
   isolation: isolate;
-  min-height: 76px;
+  min-height: 132px;
   overflow: hidden;
-  padding: 14px 18px 14px 0;
+  padding: 16px 14px;
   position: relative;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   z-index: 1;
@@ -798,7 +799,7 @@ nav {
 .journey-step:hover {
   border-color: rgba(241, 90, 36, 0.42);
   box-shadow: 0 22px 52px rgba(241, 90, 36, 0.16), 0 18px 42px rgba(144, 63, 21, 0.1);
-  transform: translateX(5px);
+  transform: translateY(-6px);
 }
 
 .journey-step:not(:last-child)::after {
@@ -825,11 +826,11 @@ nav {
   display: inline-flex;
   font-style: normal;
   font-weight: 900;
-  height: 42px;
+  height: 38px;
   justify-content: center;
   margin: 0;
   transition: transform 0.25s ease;
-  width: 42px;
+  width: 38px;
 }
 
 .journey-step:nth-child(4) i,
@@ -849,13 +850,13 @@ nav {
 }
 
 .journey-step:hover i {
-  transform: translateX(3px);
+  transform: scale(1.08);
 }
 
 .journey-step span {
   color: var(--ink);
   display: block;
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 900;
   line-height: 1.45;
   margin-top: 0;
@@ -1428,6 +1429,18 @@ footer span {
   }
 }
 
+@keyframes routeRunner {
+  0%,
+  8% {
+    transform: translateX(0);
+  }
+
+  92%,
+  100% {
+    transform: translateX(560%);
+  }
+}
+
 @keyframes boardPulse {
   0%,
   10% {
@@ -1547,6 +1560,10 @@ footer span {
   .dashboard-metrics,
   .impact-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .journey {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .journey::before,
