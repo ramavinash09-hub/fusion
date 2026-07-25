@@ -409,10 +409,10 @@ export default function App() {
                 {investmentAreas.map((area) => <p key={area}>• {area}</p>)}
               </div>
               <div>
-                <h3>3-Year Transformation Roadmap</h3>
-                <div className="year-row"><b>Year 1</b><span>Stabilise</span></div>
-                <div className="year-row"><b>Year 2</b><span>Modernise</span></div>
-                <div className="year-row"><b>Year 3</b><span>Optimise</span></div>
+                <h3>Value Realisation Roadmap</h3>
+                <div className="year-row"><b>0-90 Days</b><span>Quick Wins</span></div>
+                <div className="year-row"><b>3-6 Months</b><span>Modernise</span></div>
+                <div className="year-row"><b>6-12 Months</b><span>Scale Outcomes</span></div>
               </div>
             </div>
           </div>
@@ -441,7 +441,7 @@ export default function App() {
             </p>
           </div>
           <div className="compliance-grid">
-            {["ISO 27001-aligned posture", "HIPAA-aware delivery lens", "Evidence traceability", "Consultant validation"].map((item) => (
+            {["ISO 27001-aligned posture", "HIPAA-aware delivery lens", "TMMi-aligned QE maturity", "Industry maturity models"].map((item) => (
               <span key={item}>{item}</span>
             ))}
           </div>

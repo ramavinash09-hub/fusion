@@ -109,7 +109,14 @@ nav {
 .nav-btn,
 .btn.primary {
   background: var(--orange);
+  border: 1px solid var(--orange);
   color: #fff;
+}
+
+.nav-actions .nav-btn {
+  color: #fff;
+  letter-spacing: 0;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.18);
 }
 
 .btn {
@@ -679,9 +686,16 @@ select {
 }
 
 .year-row {
+  align-items: center;
+  border-bottom: 1px solid var(--line);
   display: flex;
+  gap: 16px;
   justify-content: space-between;
-  padding: 8px 0;
+  padding: 11px 0;
+}
+
+.year-row:last-child {
+  border-bottom: 0;
 }
 
 .year-row span {
