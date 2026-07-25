@@ -8,8 +8,6 @@
   --paper: #fff8f3;
   --white: #ffffff;
   --green: #14a06f;
-  --qe-green: #12b76a;
-  --qe-blue: #2563eb;
   --violet: #7067e8;
   --blue: #2f6df6;
   --shadow: 0 24px 70px rgba(144, 63, 21, 0.14);
@@ -351,7 +349,7 @@ nav {
 .dash-metric::before,
 .impact-card::before,
 .compliance-tile::before {
-  background: linear-gradient(90deg, var(--orange), var(--qe-green), var(--qe-blue));
+  background: linear-gradient(90deg, #d94712, var(--orange), var(--orange-2));
   border-radius: 999px;
   content: "";
   height: 3px;
@@ -672,7 +670,7 @@ nav {
 
 .meter b {
   animation: meterGrow 1.1s ease-out both;
-  background: linear-gradient(90deg, var(--orange), var(--qe-green), var(--qe-blue));
+  background: linear-gradient(90deg, #d94712, var(--orange), var(--orange-2));
   background-size: 180% 100%;
   border-radius: inherit;
   box-shadow: 0 0 18px rgba(241, 90, 36, 0.26);
@@ -692,20 +690,21 @@ nav {
 
 .journey-section {
   background:
-    radial-gradient(circle at 20% 20%, rgba(241, 90, 36, 0.18), transparent 32%),
-    linear-gradient(135deg, #fff7f0, #ffffff);
+    radial-gradient(circle at 18% 16%, rgba(241, 90, 36, 0.2), transparent 30%),
+    radial-gradient(circle at 82% 82%, rgba(255, 138, 76, 0.16), transparent 28%),
+    linear-gradient(135deg, #fff8f2, #ffffff);
   color: var(--ink);
   overflow: hidden;
   position: relative;
 }
 
 .journey-section::before {
-  animation: qeScan 12s linear infinite;
+  animation: journeyWarmth 14s ease-in-out infinite;
   background:
-    linear-gradient(90deg, transparent, rgba(18, 183, 106, 0.12), transparent),
-    linear-gradient(90deg, rgba(241, 90, 36, 0.06) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(241, 90, 36, 0.045) 1px, transparent 1px);
-  background-size: 48% 100%, 42px 42px, 42px 42px;
+    linear-gradient(90deg, transparent, rgba(241, 90, 36, 0.11), transparent),
+    linear-gradient(90deg, rgba(241, 90, 36, 0.05) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(241, 90, 36, 0.04) 1px, transparent 1px);
+  background-size: 42% 100%, 42px 42px, 42px 42px;
   content: "";
   inset: 0;
   opacity: 0.7;
@@ -725,44 +724,56 @@ nav {
 
 .journey {
   display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(9, 1fr);
+  gap: 12px;
+  grid-template-columns: repeat(9, minmax(122px, 1fr));
   margin-top: 30px;
   position: relative;
 }
 
 .journey::before {
-  animation: flowRail 3.8s ease-in-out infinite;
-  background: linear-gradient(90deg, transparent, rgba(241, 90, 36, 0.25), rgba(18, 183, 106, 0.36), transparent);
+  background: rgba(241, 90, 36, 0.13);
   content: "";
-  height: 3px;
-  left: 2%;
+  height: 2px;
+  left: 5%;
   position: absolute;
-  right: 2%;
-  top: 54px;
-  transform-origin: left center;
+  right: 5%;
+  top: 68px;
+  z-index: 0;
+}
+
+.journey::after {
+  animation: processRun 8s cubic-bezier(0.72, 0, 0.28, 1) infinite;
+  background: linear-gradient(90deg, transparent, var(--orange), var(--orange-2), transparent);
+  border-radius: 999px;
+  box-shadow: 0 0 28px rgba(241, 90, 36, 0.34);
+  content: "";
+  height: 4px;
+  left: 5%;
+  position: absolute;
+  top: 67px;
+  width: 18%;
   z-index: 0;
 }
 
 .journey-step {
   background:
     linear-gradient(#fff, #fff) padding-box,
-    linear-gradient(135deg, rgba(241, 90, 36, 0.2), rgba(18, 183, 106, 0.18)) border-box;
+    linear-gradient(135deg, rgba(241, 90, 36, 0.26), rgba(255, 138, 76, 0.12)) border-box;
   border: 1px solid rgba(241, 90, 36, 0.14);
-  border-radius: 18px;
+  border-radius: 20px;
   box-shadow: 0 12px 30px rgba(144, 63, 21, 0.08);
   isolation: isolate;
-  min-height: 116px;
+  min-height: 178px;
   overflow: hidden;
-  padding: 14px;
+  padding: 20px;
   position: relative;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   z-index: 1;
 }
 
 .journey-step::before {
-  animation: cardSweep 5.5s ease-in-out infinite;
-  background: linear-gradient(115deg, transparent 18%, rgba(255, 255, 255, 0.9) 45%, transparent 70%);
+  animation: cardSweep 8s ease-in-out infinite;
+  background: linear-gradient(115deg, transparent 18%, rgba(255, 234, 219, 0.9) 45%, transparent 70%);
   content: "";
   inset: 0;
   opacity: 0;
@@ -772,8 +783,8 @@ nav {
 }
 
 .journey-step:hover {
-  border-color: rgba(18, 183, 106, 0.38);
-  box-shadow: 0 20px 46px rgba(18, 183, 106, 0.12), 0 18px 42px rgba(144, 63, 21, 0.11);
+  border-color: rgba(241, 90, 36, 0.42);
+  box-shadow: 0 22px 52px rgba(241, 90, 36, 0.16), 0 18px 42px rgba(144, 63, 21, 0.1);
   transform: translateY(-5px);
 }
 
@@ -785,6 +796,16 @@ nav {
   right: -12px;
   top: 44px;
   transform: rotate(-90deg);
+}
+
+.journey-step:not(:last-child)::after {
+  background: linear-gradient(90deg, rgba(241, 90, 36, 0.08), rgba(241, 90, 36, 0.55));
+  content: "";
+  height: 2px;
+  right: -15px;
+  top: 68px;
+  transform: none;
+  width: 16px;
 }
 
 .journey-step i {
@@ -807,16 +828,16 @@ nav {
 .journey-step:nth-child(5) i,
 .journey-step:nth-child(7) i,
 .journey-step:nth-child(8) i {
-  background: #ecfdf3;
-  border-color: rgba(18, 183, 106, 0.24);
-  color: var(--qe-green);
+  background: #fff5ef;
+  border-color: rgba(241, 90, 36, 0.24);
+  color: var(--orange);
 }
 
 .journey-step:nth-child(6) i,
 .journey-step:nth-child(9) i {
-  background: #eff6ff;
-  border-color: rgba(37, 99, 235, 0.18);
-  color: var(--qe-blue);
+  background: #fff5ef;
+  border-color: rgba(241, 90, 36, 0.24);
+  color: var(--orange);
 }
 
 .journey-step:hover i {
@@ -825,8 +846,11 @@ nav {
 
 .journey-step span {
   color: var(--ink);
-  font-size: 11px;
+  display: block;
+  font-size: 14px;
   font-weight: 900;
+  line-height: 1.45;
+  margin-top: 24px;
 }
 
 .unified-section {
@@ -1247,6 +1271,46 @@ footer span {
   animation: riseIn 0.7s ease-out both;
 }
 
+.journey-step {
+  animation: riseIn 0.7s ease-out both, stepFocus 8s ease-in-out infinite;
+}
+
+.journey-step:nth-child(1) {
+  animation-delay: 0.05s, 0s;
+}
+
+.journey-step:nth-child(2) {
+  animation-delay: 0.1s, 0.85s;
+}
+
+.journey-step:nth-child(3) {
+  animation-delay: 0.15s, 1.7s;
+}
+
+.journey-step:nth-child(4) {
+  animation-delay: 0.2s, 2.55s;
+}
+
+.journey-step:nth-child(5) {
+  animation-delay: 0.25s, 3.4s;
+}
+
+.journey-step:nth-child(6) {
+  animation-delay: 0.3s, 4.25s;
+}
+
+.journey-step:nth-child(7) {
+  animation-delay: 0.35s, 5.1s;
+}
+
+.journey-step:nth-child(8) {
+  animation-delay: 0.4s, 5.95s;
+}
+
+.journey-step:nth-child(9) {
+  animation-delay: 0.45s, 6.8s;
+}
+
 @keyframes sheen {
   0%,
   100% {
@@ -1319,6 +1383,31 @@ footer span {
   }
 }
 
+@keyframes journeyWarmth {
+  0%,
+  100% {
+    opacity: 0.58;
+    transform: translateX(-35%);
+  }
+
+  50% {
+    opacity: 0.82;
+    transform: translateX(22%);
+  }
+}
+
+@keyframes processRun {
+  0%,
+  10% {
+    transform: translateX(0);
+  }
+
+  90%,
+  100% {
+    transform: translateX(500%);
+  }
+}
+
 @keyframes flowRail {
   0%,
   100% {
@@ -1346,6 +1435,20 @@ footer span {
   100% {
     opacity: 0;
     transform: translateX(120%);
+  }
+}
+
+@keyframes stepFocus {
+  0%,
+  12% {
+    border-color: rgba(241, 90, 36, 0.48);
+    box-shadow: 0 24px 58px rgba(241, 90, 36, 0.18);
+  }
+
+  20%,
+  100% {
+    border-color: rgba(241, 90, 36, 0.14);
+    box-shadow: 0 12px 30px rgba(144, 63, 21, 0.08);
   }
 }
 
@@ -1379,6 +1482,8 @@ footer span {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .journey::before,
+  .journey::after,
   .journey-step::after {
     display: none;
   }
