@@ -730,11 +730,11 @@ nav {
 .journey {
   counter-reset: journey;
   display: grid;
-  gap: 14px;
-  grid-template-columns: repeat(9, minmax(96px, 1fr));
-  grid-template-rows: 92px 92px;
+  column-gap: 22px;
+  grid-template-columns: repeat(5, minmax(132px, 170px));
+  grid-template-rows: 150px 150px;
   margin: 44px 0 0;
-  max-width: 1320px;
+  max-width: 1040px;
   position: relative;
   text-align: left;
 }
@@ -745,10 +745,10 @@ nav {
     linear-gradient(90deg, rgba(241, 90, 36, 0.12), transparent 18%, transparent 82%, rgba(241, 90, 36, 0.12));
   content: "";
   height: 4px;
-  left: 4%;
+  left: 42px;
   position: absolute;
-  right: 4%;
-  top: 92px;
+  right: 42px;
+  top: 150px;
   z-index: 0;
 }
 
@@ -759,10 +759,10 @@ nav {
   box-shadow: 0 0 22px rgba(241, 90, 36, 0.35);
   content: "";
   height: 4px;
-  left: 4%;
+  left: 42px;
   position: absolute;
-  top: 92px;
-  width: 14%;
+  top: 150px;
+  width: 18%;
   z-index: 0;
 }
 
@@ -778,9 +778,9 @@ nav {
   flex-direction: column;
   gap: 10px;
   isolation: isolate;
-  min-height: 118px;
+  min-height: 132px;
   overflow: hidden;
-  padding: 14px;
+  padding: 16px;
   position: relative;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   z-index: 1;
@@ -794,6 +794,30 @@ nav {
 .journey-step:nth-child(even) {
   align-self: start;
   grid-row: 2;
+}
+
+.journey-step:nth-child(1),
+.journey-step:nth-child(2) {
+  grid-column: 1;
+}
+
+.journey-step:nth-child(3),
+.journey-step:nth-child(4) {
+  grid-column: 2;
+}
+
+.journey-step:nth-child(5),
+.journey-step:nth-child(6) {
+  grid-column: 3;
+}
+
+.journey-step:nth-child(7),
+.journey-step:nth-child(8) {
+  grid-column: 4;
+}
+
+.journey-step:nth-child(9) {
+  grid-column: 5;
 }
 
 .journey-step::before {
@@ -831,18 +855,18 @@ nav {
 .journey-step:nth-child(even)::after {
   background: linear-gradient(180deg, rgba(241, 90, 36, 0.12), rgba(241, 90, 36, 0.5));
   content: "";
-  height: 28px;
+  height: 20px;
   left: 32px;
   position: absolute;
   width: 2px;
 }
 
 .journey-step:nth-child(odd)::after {
-  bottom: -28px;
+  bottom: -20px;
 }
 
 .journey-step:nth-child(even)::after {
-  top: -28px;
+  top: -20px;
 }
 
 .journey-step:nth-child(even)::after {
@@ -1470,7 +1494,7 @@ footer span {
 
   92%,
   100% {
-    transform: translateX(560%);
+    transform: translateX(450%);
   }
 }
 
@@ -1603,6 +1627,7 @@ footer span {
   .journey-step:nth-child(odd),
   .journey-step:nth-child(even) {
     align-self: stretch;
+    grid-column: auto;
     grid-row: auto;
   }
 
