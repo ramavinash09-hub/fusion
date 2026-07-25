@@ -729,7 +729,7 @@ select {
   background: #111824;
   color: #fff;
   display: grid;
-  gap: 34px;
+  gap: 46px;
   grid-template-columns: 1fr 1fr;
 }
 
@@ -743,14 +743,26 @@ select {
   grid-template-columns: repeat(2, 1fr);
 }
 
-.compliance-grid span {
+.compliance-tile {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.13);
-  border-radius: 16px;
+  border-radius: 14px;
   color: #fff;
-  font-size: 12px;
-  font-weight: 900;
+  min-height: 112px;
   padding: 18px;
+}
+
+.compliance-tile b {
+  display: block;
+  font: 900 15px Manrope, sans-serif;
+  margin-bottom: 10px;
+}
+
+.compliance-tile span {
+  color: #cbd5e1;
+  display: block;
+  font-size: 12px;
+  line-height: 1.45;
 }
 
 footer {

@@ -113,6 +113,15 @@ const impactMetrics = [
   ["AI adoption readiness", "+25-40%", "through governance, data readiness and controlled AI-QE pilots"]
 ];
 
+const complianceStandards = [
+  ["ISO 27001", "Information security posture and controlled evidence handling"],
+  ["HIPAA-aware lens", "Healthcare context support for privacy-conscious delivery"],
+  ["TMMi", "Quality Engineering maturity model alignment for QMAP"],
+  ["CMMI / ITIL", "Process maturity and service management reference models"],
+  ["NIST AI RMF", "Responsible AI risk framing for AIDEN assessments"],
+  ["OWASP / DevSecOps", "Secure engineering and automation readiness cues"]
+];
+
 function defaultDate() {
   return new Date().toISOString().slice(0, 10);
 }
@@ -441,8 +450,11 @@ export default function App() {
             </p>
           </div>
           <div className="compliance-grid">
-            {["ISO 27001-aligned posture", "HIPAA-aware delivery lens", "TMMi-aligned QE maturity", "Industry maturity models"].map((item) => (
-              <span key={item}>{item}</span>
+            {complianceStandards.map(([standard, copy]) => (
+              <article className="compliance-tile" key={standard}>
+                <b>{standard}</b>
+                <span>{copy}</span>
+              </article>
             ))}
           </div>
         </section>
