@@ -321,14 +321,14 @@ export default function App() {
             <svg className="journey-route" viewBox="0 0 1200 420" role="presentation" aria-hidden="true">
               <path
                 className="journey-route-shadow"
-                d="M70 220 C170 80 290 80 390 220 S610 360 710 220 S930 80 1030 220 S1130 360 1160 230"
+                d="M70 220 C170 80 290 80 390 220 S610 360 710 220 S920 90 1020 220 S1110 330 1160 185"
               />
               <path
                 className="journey-route-line"
-                d="M70 220 C170 80 290 80 390 220 S610 360 710 220 S930 80 1030 220 S1130 360 1160 230"
+                d="M70 220 C170 80 290 80 390 220 S610 360 710 220 S920 90 1020 220 S1110 330 1160 185"
               />
               <circle className="journey-runner" r="12">
-                <animateMotion dur="8s" repeatCount="indefinite" path="M70 220 C170 80 290 80 390 220 S610 360 710 220 S930 80 1030 220 S1130 360 1160 230" />
+                <animateMotion dur="8s" repeatCount="indefinite" path="M70 220 C170 80 290 80 390 220 S610 360 710 220 S920 90 1020 220 S1110 330 1160 185" />
               </circle>
             </svg>
             <div className="journey">
