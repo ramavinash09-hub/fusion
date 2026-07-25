@@ -317,13 +317,28 @@ export default function App() {
         <section className="section journey-section">
           <div className="eyebrow">Platform Journey</div>
           <h2>From organisation context to transformation roadmap.</h2>
-          <div className="journey">
-            {journey.map((step, index) => (
-              <div className="journey-step" key={step}>
-                <i>{index + 1}</i>
-                <span>{step}</span>
-              </div>
-            ))}
+          <div className="journey-map" aria-label="FUSION platform journey map">
+            <svg className="journey-route" viewBox="0 0 1200 420" role="presentation" aria-hidden="true">
+              <path
+                className="journey-route-shadow"
+                d="M70 220 C170 80 290 80 390 220 S610 360 710 220 S930 80 1030 220 S1130 360 1160 230"
+              />
+              <path
+                className="journey-route-line"
+                d="M70 220 C170 80 290 80 390 220 S610 360 710 220 S930 80 1030 220 S1130 360 1160 230"
+              />
+              <circle className="journey-runner" r="12">
+                <animateMotion dur="8s" repeatCount="indefinite" path="M70 220 C170 80 290 80 390 220 S610 360 710 220 S930 80 1030 220 S1130 360 1160 230" />
+              </circle>
+            </svg>
+            <div className="journey">
+              {journey.map((step, index) => (
+                <div className="journey-step" key={step}>
+                  <i>{index + 1}</i>
+                  <span>{step}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
