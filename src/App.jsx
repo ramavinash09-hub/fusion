@@ -1,7 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
 
-const profileFields = ["org", "industry", "region", "owner", "date"];
-
 const industries = [
   "Financial Services",
   "Healthcare & Life Sciences",
@@ -13,179 +11,165 @@ const industries = [
   "Public Sector"
 ];
 
+const cloudProfiles = ["Azure", "AWS", "Google Cloud", "Hybrid Cloud", "On-premise"];
+const architectureProfiles = ["Cloud Native", "Hybrid Modernization", "Legacy Modernization", "Platform Engineering"];
+
+const platformKpis = [
+  ["3", "Consulting Accelerators"],
+  ["75+", "Assessment Dimensions"],
+  ["300+", "Recommendations"],
+  ["Executive", "Transformation Reports"],
+  ["AI-powered", "Consulting"]
+];
+
 const accelerators = [
   {
     key: "qmap",
     name: "QMAP",
-    domain: "Quality Engineering",
-    headline: "Understand QE maturity and transformation priorities.",
-    signal: "Release confidence, operating model, metrics, governance and QE maturity.",
+    title: "Quality Maturity Assessment & Planning",
+    icon: "⚙",
     href: "/qmap.html",
-    service: "Quality Engineering Transformation",
-    accent: "orange",
-    points: ["QE maturity baseline", "Readiness heatmap", "Benchmarks", "Roadmap"]
+    purpose:
+      "Evaluate enterprise Quality Engineering maturity, benchmark capabilities, identify improvement themes and produce transformation roadmaps.",
+    domains: ["Governance", "Operating Model", "Automation", "Engineering", "Metrics", "Continuous Testing"],
+    tags: ["QE maturity", "Benchmarking", "Roadmap", "Executive report"],
+    accent: "orange"
   },
   {
     key: "craft",
     name: "CRAFT",
-    domain: "Automation Engineering",
-    headline: "Evaluate automation readiness and modernization priorities.",
-    signal: "Manual effort, automation debt, framework health, CI/CD fit and execution readiness.",
+    title: "Continuous Readiness Assessment Framework for Test Automation",
+    icon: "▣",
     href: "/craft.html",
-    service: "Automation Modernization",
-    accent: "green",
-    points: ["Automation readiness", "Evidence inference", "Follow-up prompts", "Modernization plan"]
+    purpose:
+      "Evaluate automation engineering capability and identify opportunities to accelerate intelligent automation readiness.",
+    domains: ["Framework", "CI/CD", "Automation", "Test Data", "Reporting", "Engineering Practices"],
+    tags: ["Automation", "CI/CD", "Framework", "Readiness"],
+    accent: "green"
   },
   {
     key: "aiden",
     name: "AIDEN",
-    domain: "AI-enabled Transformation",
-    headline: "Assess responsible AI readiness and AI-enabled QE feasibility.",
-    signal: "AI governance, data, architecture, AI operations, human oversight and use-case readiness.",
+    title: "AI Readiness & QE Adoption Accelerator",
+    icon: "AI",
     href: "/aiden.html",
-    service: "AI Advisory and AI-enabled QE",
-    accent: "violet",
-    points: ["Enterprise AI readiness", "AI-QE adoption", "Use-case priority", "Value roadmap"]
+    purpose:
+      "Assess enterprise AI readiness, responsible AI foundations and AI-enabled QE adoption feasibility through evidence-led review.",
+    domains: ["AI Governance", "Data", "Architecture", "AI Operations", "Human Oversight", "AI-enabled QE"],
+    tags: ["AI readiness", "Responsible AI", "AI-QE", "Value roadmap"],
+    accent: "violet"
   }
 ];
 
-const servicePlays = [
-  {
-    title: "Product Engineering",
-    trigger: "Product delivery, ownership and engineering ways of working need a structured review.",
-    offer: "Product engineering acceleration, delivery model redesign and platform-led product squads."
-  },
-  {
-    title: "Quality Engineering",
-    trigger: "Release confidence, quality gates, defect trends or QE metrics need a clearer operating view.",
-    offer: "QE transformation, test strategy, governance, metrics and managed QE services."
-  },
-  {
-    title: "Automation",
-    trigger: "Regression effort, automation coverage, framework health or validation cycle time need review.",
-    offer: "Automation modernization, framework engineering, CI/CD integration and regression optimization."
-  },
-  {
-    title: "AI",
-    trigger: "AI readiness, governance, use-case feasibility or adoption controls need structured assessment.",
-    offer: "AI advisory, responsible AI foundations, AI-enabled QE pilots and adoption roadmap."
-  },
-  {
-    title: "Cloud and Infra",
-    trigger: "Environment reliability, scalability, release flow or platform foundations need review.",
-    offer: "Cloud modernization, DevOps enablement, environment reliability and platform engineering."
-  },
-  {
-    title: "Data and Analytics",
-    trigger: "Lifecycle data, reporting, traceability or decision intelligence need a connected view.",
-    offer: "Data foundation, engineering analytics, quality intelligence and executive dashboards."
-  }
+const capabilityCoverage = [
+  ["Quality Engineering", 88],
+  ["Artificial Intelligence", 76],
+  ["Automation Engineering", 78],
+  ["Governance", 86],
+  ["Transformation", 74],
+  ["Executive Reporting", 90],
+  ["Roadmaps", 80],
+  ["Business Case", 68]
 ];
 
-const outcomeAreas = [
-  {
-    title: "Readiness clarity",
-    copy: "A common view of current maturity, evidence coverage and roadmap themes across accelerator modules."
-  },
-  {
-    title: "Decision support",
-    copy: "Executive-ready summaries that help teams compare priorities, dependencies and implementation choices."
-  },
-  {
-    title: "Practical roadmap",
-    copy: "A phased view of recommended actions, from discovery and validation through adoption and scale."
-  },
-  {
-    title: "Traceable assessment",
-    copy: "Evidence, assumptions and consultant inputs are kept visible so findings can be reviewed with confidence."
-  }
+const journey = [
+  "Organisation",
+  "Select Accelerator",
+  "Discovery",
+  "Assessment",
+  "Evidence",
+  "AI Insights",
+  "Consultant Validation",
+  "Executive Report",
+  "Transformation Roadmap"
 ];
 
-const compliancePrinciples = [
-  ["Security posture", "Designed to align with Feuji's ISO 27001-led information security practices."],
-  ["Privacy awareness", "Supports HIPAA-aware handling considerations for healthcare and regulated contexts."],
-  ["Evidence handling", "Uses customer artefacts for assessment context and keeps evidence references visible."],
-  ["Controlled usage", "Positions accelerator output as advisory guidance, with consultant validation before action."]
+const dashboardMetrics = [
+  ["Overall Enterprise Readiness", "78%"],
+  ["Quality Engineering", "74%"],
+  ["AI Readiness", "69%"],
+  ["Automation Readiness", "82%"]
 ];
 
-const transformationThemes = [
-  ["01", "Contextualize", "Use evidence and customer context to establish a balanced readiness view."],
-  ["02", "Align", "Connect readiness themes to relevant Feuji service capabilities."],
-  ["03", "Prioritize", "Separate foundational actions, pilot candidates and scale considerations."],
-  ["04", "Guide", "Create a practical roadmap, value view and executive summary."]
+const riskThemes = [
+  "Legacy automation framework",
+  "AI governance gaps",
+  "Test data bottlenecks",
+  "Manual release validation"
 ];
 
-function getDefaultDate() {
+const investmentAreas = [
+  "AI-enabled test generation",
+  "Enterprise automation platform",
+  "Quality Engineering CoE",
+  "Responsible AI governance"
+];
+
+const impactMetrics = [
+  ["Regression effort reduction", "30-45%", "through automation modernization and AI-assisted test design"],
+  ["Faster release cycles", "20-35%", "through improved quality gates, CI/CD readiness and risk-based validation"],
+  ["QE maturity uplift", "+0.8 to +1.2", "maturity level improvement over a 12-18 month roadmap"],
+  ["Operational cost reduction", "15-25%", "through reduced manual validation and better engineering efficiency"],
+  ["AI adoption readiness", "+25-40%", "through governance, data readiness and controlled AI-QE pilots"]
+];
+
+function defaultDate() {
   return new Date().toISOString().slice(0, 10);
 }
 
 export default function App() {
   const [profile, setProfile] = useState({
-    org: "",
-    industry: industries[0],
-    region: "",
+    org: "ABC Bank",
+    industry: "Financial Services",
+    cloud: "Azure",
+    architecture: "Cloud Native",
+    applications: "500",
     owner: "",
-    date: getDefaultDate()
+    date: defaultDate(),
+    selected: ["qmap", "aiden", "craft"]
   });
   const [toast, setToast] = useState("");
 
-  const recommendedMotion = useMemo(() => {
-    if (/financial|healthcare|public/i.test(profile.industry)) {
-      return "Evidence-led discovery with governance, privacy and risk considerations reflected in the roadmap.";
-    }
-    if (/technology|saas/i.test(profile.industry)) {
-      return "Product engineering, automation and AI-enabled quality intelligence review with a platform lens.";
-    }
-    return "Cross-domain readiness review followed by a practical, evidence-informed transformation roadmap.";
-  }, [profile.industry]);
+  const selectedAccelerators = useMemo(
+    () => accelerators.filter((item) => profile.selected.includes(item.key)),
+    [profile.selected]
+  );
 
   useEffect(() => {
     try {
-      const savedProfile = JSON.parse(
-        localStorage.getItem("feujiFusionProfile") || "{}"
-      );
-      setProfile((current) => ({
-        ...current,
-        ...Object.fromEntries(
-          profileFields
-            .filter((field) => savedProfile[field] !== undefined)
-            .map((field) => [field, savedProfile[field]])
-        ),
-        date: savedProfile.date || current.date
-      }));
+      const saved = JSON.parse(localStorage.getItem("feujiFusionProfile") || "{}");
+      setProfile((current) => ({ ...current, ...saved, selected: saved.selected || current.selected }));
     } catch {
-      setProfile((current) => ({ ...current, date: current.date || getDefaultDate() }));
+      // Demo profile is optional.
     }
   }, []);
 
   useEffect(() => {
     if (!toast) return;
-    const timeout = window.setTimeout(() => setToast(""), 2500);
-    return () => window.clearTimeout(timeout);
+    const timer = window.setTimeout(() => setToast(""), 2500);
+    return () => window.clearTimeout(timer);
   }, [toast]);
 
   function updateProfile(field, value) {
     setProfile((current) => ({ ...current, [field]: value }));
   }
 
+  function toggleAccelerator(key) {
+    setProfile((current) => {
+      const selected = current.selected.includes(key)
+        ? current.selected.filter((item) => item !== key)
+        : [...current.selected, key];
+      return { ...current, selected };
+    });
+  }
+
   function saveProfile() {
-    try {
-      localStorage.setItem("feujiFusionProfile", JSON.stringify(profile));
-      setToast("Organisation profile saved locally.");
-    } catch {
-      setToast("Profile could not be saved.");
-    }
+    localStorage.setItem("feujiFusionProfile", JSON.stringify(profile));
+    setToast("Unified assessment profile saved locally.");
   }
 
   function remember(name) {
-    try {
-      localStorage.setItem(
-        "feujiFusionLastLaunch",
-        JSON.stringify({ name, time: new Date().toISOString() })
-      );
-    } catch {
-      // Launch history is helpful but non-essential.
-    }
+    localStorage.setItem("feujiFusionLastLaunch", JSON.stringify({ name, time: new Date().toISOString() }));
   }
 
   return (
@@ -194,341 +178,279 @@ export default function App() {
         <div className="brand">
           <div className="feuji">feuji</div>
           <div className="sep" />
-          <div className="brand-copy">
-            <b>FUSION</b>
-            <span>Transformation Intelligence Platform</span>
+          <div>
+            <b>FUSION™</b>
+            <span>Enterprise Advisory Platform</span>
           </div>
         </div>
-        <div className="nav-right">
-          <span className="status">Executive Edition</span>
-          <a className="btn" href="#command">
-            Command Center
-          </a>
+        <div className="nav-actions">
+          <a href="#accelerators">Accelerators</a>
+          <a href="#dashboard">Dashboard</a>
+          <a className="nav-btn" href="#unified">Create Assessment</a>
         </div>
       </nav>
 
       <main>
-        <section className="hero" aria-labelledby="hero-title">
+        <section className="hero">
+          <div className="hero-bg" />
           <div className="hero-copy">
-            <div className="eyebrow">Feuji Enterprise Advisory</div>
-            <h1 id="hero-title">
-              FUSION brings Feuji accelerators into one structured transformation platform.
+            <div className="eyebrow">Feuji FUSION™ · Enterprise Advisory Platform</div>
+            <h1>
+              Helping Enterprises Assess, Benchmark, Transform and Modernize
+              through AI-powered Consulting.
             </h1>
             <p>
-              A customer-facing platform for structured advisory conversations
-              across product engineering, quality engineering, automation, AI,
-              cloud, infra, data and analytics. FUSION brings together
-              evidence-led accelerators, readiness views and practical roadmap
-              outputs in an industry-aware and compliance-conscious experience.
+              One platform. Multiple consulting accelerators. Unified enterprise
+              transformation insights across Quality Engineering, Automation,
+              AI readiness and executive roadmap development.
             </p>
             <div className="hero-actions">
-              <a className="btn primary" href="#command">
-                Open Executive Command Center
-              </a>
-              <a className="btn" href="#accelerators">
-                Launch Accelerators
-              </a>
+              <a className="btn primary" href="#accelerators">Explore Accelerators</a>
+              <a className="btn glass" href="#unified">View Unified Assessment</a>
             </div>
           </div>
-          <div className="hero-art">
-            <div className="command-card">
-              <div className="panel-top">
-                <span>FUSION platform view</span>
-                <b>{profile.org || "Sample Organisation"}</b>
-              </div>
-              <div className="signal-grid">
-                <div>
-                  <strong>3</strong>
-                  <span>active accelerators</span>
-                </div>
-                <div>
-                  <strong>6</strong>
-                  <span>capability areas</span>
-                </div>
-                <div>
-                  <strong>ISO</strong>
-                  <span>security-aware posture</span>
-                </div>
-              </div>
-              <div className="insight-box">
-                <span>Contextual guidance</span>
-                <p>{recommendedMotion}</p>
-              </div>
-              <div className="mini-flow">
-                {["Evidence", "Readiness", "Capabilities", "Roadmap"].map((item) => (
-                  <i key={item}>{item}</i>
+          <div className="hero-panel">
+            <div className="network-card">
+              <span>Enterprise readiness signal</span>
+              <strong>FUSION</strong>
+              <p>Evidence · AI Insights · Consultant Validation · Executive Roadmap</p>
+              <div className="node-map">
+                {["QE", "AI", "AUTO", "GOV", "DATA", "ROADMAP"].map((node) => (
+                  <i key={node}>{node}</i>
                 ))}
               </div>
             </div>
           </div>
         </section>
 
-        <section id="command" className="command">
-          <div className="container">
-            <div className="section-head">
-              <div>
-                <div className="kicker">Executive command center</div>
-                <div className="title">One platform view before the accelerator drill-down.</div>
-                <p className="desc">
-                  FUSION provides an executive-level view of readiness themes,
-                  accelerator coverage and relevant Feuji capability areas
-                  before users move into detailed accelerator screens. Industry
-                  context adjusts the lens; the accelerators remain applicable
-                  across industries.
-                </p>
-              </div>
-              <a className="btn primary" href="#profile">
-                Set Customer Context
-              </a>
+        <section className="kpi-strip">
+          {platformKpis.map(([value, label]) => (
+            <div className="kpi" key={label}>
+              <b>{value}</b>
+              <span>{label}</span>
             </div>
+          ))}
+        </section>
 
-            <div className="command-layout">
-              <div className="snapshot">
-                <div className="snapshot-head">
-                  <span>Readiness snapshot</span>
-                  <b>{profile.industry}</b>
+        <section id="accelerators" className="section">
+          <div className="section-head">
+            <div>
+              <div className="eyebrow">Consulting Accelerators</div>
+              <h2>Three focused accelerators. One connected platform experience.</h2>
+              <p>
+                QMAP, CRAFT and AIDEN can be demonstrated independently, while
+                FUSION provides the common platform layer for profile reuse,
+                evidence-led insights and consolidated reporting.
+              </p>
+            </div>
+          </div>
+          <div className="accelerator-grid">
+            {accelerators.map((item) => (
+              <article className={`accelerator-card ${item.accent}`} key={item.key}>
+                <div className="card-glow" />
+                <div className="acc-top">
+                  <div className="acc-icon">{item.icon}</div>
+                  <span>{item.name}</span>
                 </div>
-                <div className="readiness-bars">
-                  {[
-                    ["Quality Engineering", 68, "QMAP"],
-                    ["Automation", 61, "CRAFT"],
-                    ["AI-enabled QE", 56, "AIDEN"],
-                    ["Data and Intelligence", 52, "FUSION"]
-                  ].map(([label, value, source]) => (
-                    <div className="bar-row" key={label}>
-                      <div>
-                        <b>{label}</b>
-                        <span>{source}</span>
-                      </div>
-                      <div className="bar">
-                        <i style={{ width: `${value}%` }} />
-                      </div>
-                      <strong>{value}</strong>
-                    </div>
+                <h3>{item.title}</h3>
+                <div className="label">Purpose</div>
+                <p>{item.purpose}</p>
+                <div className="label">Domains</div>
+                <div className="domain-list">
+                  {item.domains.map((domain) => (
+                    <span key={domain}>✓ {domain}</span>
                   ))}
                 </div>
+                <div className="tag-row">
+                  {item.tags.map((tag) => (
+                    <i key={tag}>{tag}</i>
+                  ))}
+                </div>
+                <a className="launch" href={item.href} onClick={() => remember(item.name)}>Launch</a>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="section split-section">
+          <div>
+            <div className="eyebrow">Enterprise Capability Map</div>
+            <h2>Capability coverage across the advisory platform.</h2>
+            <p>
+              A simple customer-facing view of the platform’s coverage across
+              quality, automation, AI, governance, roadmap and executive
+              reporting areas.
+            </p>
+          </div>
+          <div className="capability-matrix">
+            {capabilityCoverage.map(([name, value]) => (
+              <div className="capability-row" key={name}>
+                <span>{name}</span>
+                <div className="meter"><b style={{ width: `${value}%` }} /></div>
+                <strong>{value}%</strong>
               </div>
+            ))}
+          </div>
+        </section>
 
-              <div className="recommendation">
-                <div className="kicker">Suggested assessment pathway</div>
-                <h3>{recommendedMotion}</h3>
-                <p>
-                  Use the accelerators to validate the baseline and convert
-                  the findings into a customer-ready roadmap, summary and
-                  implementation direction. Outputs are intended to support
-                  discussion and planning, not replace expert validation.
-                </p>
-                <div className="recommended-stack">
-                  <span>Discovery workshop</span>
-                  <span>Evidence review</span>
-                  <span>Pilot definition</span>
-                  <span>Implementation roadmap</span>
-                </div>
+        <section className="section journey-section">
+          <div className="eyebrow">Platform Journey</div>
+          <h2>From organisation context to transformation roadmap.</h2>
+          <div className="journey">
+            {journey.map((step, index) => (
+              <div className="journey-step" key={step}>
+                <i>{index + 1}</i>
+                <span>{step}</span>
               </div>
-            </div>
+            ))}
           </div>
         </section>
 
-        <section id="accelerators">
-          <div className="container">
-            <div className="kicker">Evidence-led accelerators</div>
-            <div className="title">Use the right accelerator for the transformation question.</div>
-            <p className="desc">
-              QMAP, CRAFT and AIDEN become the domain engines underneath the
-              FUSION executive layer. Each can operate independently or
-              contribute to a wider transformation roadmap.
-            </p>
-            <div className="cards">
-              {accelerators.map((accelerator) => (
-                <article className={`card ${accelerator.accent}`} key={accelerator.key}>
-                  <div className="domain">{accelerator.domain}</div>
-                  <h3>{accelerator.headline}</h3>
-                  <div className="powered">
-                    Powered by <b>{accelerator.name}</b>
-                  </div>
-                  <p>{accelerator.signal}</p>
-                  <ul>
-                    {accelerator.points.map((point) => (
-                      <li key={point}>{point}</li>
-                    ))}
-                  </ul>
-                  <div className="service-map">Aligned capability: {accelerator.service}</div>
-                  <a
-                    className="btn launch"
-                    href={accelerator.href}
-                    onClick={() => remember(accelerator.name)}
-                  >
-                    Launch {accelerator.name}
-                  </a>
-                </article>
-              ))}
+        <section id="unified" className="section unified-section">
+          <div className="section-head">
+            <div>
+              <div className="eyebrow">Platform Vision</div>
+              <h2>Unified Enterprise Assessment</h2>
+              <p>
+                Instead of repeating the same organisation profile inside every
+                accelerator, FUSION can create one shared assessment context and
+                pass it into QMAP, AIDEN and CRAFT.
+              </p>
             </div>
           </div>
-        </section>
 
-        <section className="outcomes-section">
-          <div className="container">
-            <div className="kicker">Customer-facing outcomes</div>
-            <div className="title">What the FUSION demo should make visible.</div>
-            <p className="desc">
-              The platform should not simply show assessment screens. It should
-              demonstrate how evidence, accelerator logic and consulting review
-              come together to produce clear, practical outputs.
-            </p>
-            <div className="outcome-grid">
-              {outcomeAreas.map((area) => (
-                <div className="outcome-card" key={area.title}>
-                  <span>{area.title}</span>
-                  <p>{area.copy}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="service-section">
-          <div className="container">
-            <div className="kicker">Feuji capability alignment</div>
-            <div className="title">Relate accelerator outputs to Feuji service capabilities.</div>
-            <p className="desc">
-              FUSION keeps the discussion structured by showing which Feuji
-              capabilities are relevant to different transformation themes,
-              without turning the platform into a sales-heavy experience.
-            </p>
-            <div className="service-grid">
-              {servicePlays.map((play) => (
-                <div className="service-card" key={play.title}>
-                  <span>{play.title}</span>
-                  <h3>{play.trigger}</h3>
-                  <p>{play.offer}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="compliance-section">
-          <div className="container">
-            <div className="section-head">
-              <div>
-                <div className="kicker">Security and compliance posture</div>
-                <div className="title">Built for regulated and cross-industry advisory contexts.</div>
-                <p className="desc">
-                  FUSION should be presented as an accelerator platform that is
-                  mindful of information security, privacy and customer evidence
-                  handling. The industry selection adapts context; it does not
-                  restrict platform applicability.
-                </p>
-              </div>
-              <span className="compliance-badge">ISO 27001 · HIPAA-aware</span>
-            </div>
-            <div className="compliance-grid">
-              {compliancePrinciples.map(([title, copy]) => (
-                <div className="compliance-card" key={title}>
-                  <b>{title}</b>
-                  <p>{copy}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="profile" className="profile">
-          <div className="container">
-            <div className="kicker">Customer context</div>
-            <div className="title">Create a lightweight organisation profile.</div>
-            <p className="desc">
-              This shared profile sets the organisation context for the FUSION
-              narrative and prepares the platform for cross-accelerator data.
-            </p>
-            <div className="profile-box">
+          <div className="unified-layout">
+            <div className="profile-card">
+              <h3>Create Assessment</h3>
               <div className="fields">
-                <label className="field">
-                  <span>Organisation name</span>
-                  <input
-                    value={profile.org}
-                    placeholder="ABC Bank"
-                    onChange={(event) => updateProfile("org", event.target.value)}
-                  />
+                <label>
+                  <span>Organisation</span>
+                  <input value={profile.org} onChange={(event) => updateProfile("org", event.target.value)} />
                 </label>
-                <label className="field">
-                  <span>Industry context</span>
-                  <select
-                    value={profile.industry}
-                    onChange={(event) => updateProfile("industry", event.target.value)}
-                  >
-                    {industries.map((industry) => (
-                      <option key={industry}>{industry}</option>
-                    ))}
+                <label>
+                  <span>Industry</span>
+                  <select value={profile.industry} onChange={(event) => updateProfile("industry", event.target.value)}>
+                    {industries.map((industry) => <option key={industry}>{industry}</option>)}
                   </select>
                 </label>
-                <label className="field">
-                  <span>Country / Region</span>
-                  <input
-                    value={profile.region}
-                    placeholder="India / North America"
-                    onChange={(event) => updateProfile("region", event.target.value)}
-                  />
+                <label>
+                  <span>Cloud</span>
+                  <select value={profile.cloud} onChange={(event) => updateProfile("cloud", event.target.value)}>
+                    {cloudProfiles.map((cloud) => <option key={cloud}>{cloud}</option>)}
+                  </select>
                 </label>
-                <label className="field">
-                  <span>Review owner</span>
-                  <input
-                    value={profile.owner}
-                    placeholder="Consultant or sponsor"
-                    onChange={(event) => updateProfile("owner", event.target.value)}
-                  />
+                <label>
+                  <span>Architecture</span>
+                  <select value={profile.architecture} onChange={(event) => updateProfile("architecture", event.target.value)}>
+                    {architectureProfiles.map((item) => <option key={item}>{item}</option>)}
+                  </select>
                 </label>
-                <label className="field">
-                  <span>Review date</span>
-                  <input
-                    type="date"
-                    value={profile.date}
-                    onChange={(event) => updateProfile("date", event.target.value)}
-                  />
+                <label>
+                  <span>Application estate</span>
+                  <input value={profile.applications} onChange={(event) => updateProfile("applications", event.target.value)} />
                 </label>
               </div>
-              <div className="profile-foot">
-                <p>
-                  This release stores the profile locally in the browser.
-                  Industry context is used to tune language, benchmarks and
-                  roadmap considerations. QMAP, CRAFT and AIDEN are intended to
-                  remain reusable across industries, with compliance and privacy
-                  expectations addressed through the engagement model.
-                </p>
-                <button className="btn primary" type="button" onClick={saveProfile}>
-                  Save Profile
-                </button>
+              <button className="btn primary full" type="button" onClick={saveProfile}>Continue</button>
+            </div>
+
+            <div className="selector-card">
+              <h3>Select accelerators</h3>
+              {accelerators.map((item) => (
+                <label className="check-row" key={item.key}>
+                  <input
+                    type="checkbox"
+                    checked={profile.selected.includes(item.key)}
+                    onChange={() => toggleAccelerator(item.key)}
+                  />
+                  <span>{item.name}</span>
+                  <small>{item.title}</small>
+                </label>
+              ))}
+              <div className="selected-note">
+                {selectedAccelerators.map((item) => item.name).join(" + ")} will receive the shared profile context.
               </div>
             </div>
           </div>
         </section>
 
-        <section className="journey-section">
-          <div className="container">
-            <div className="kicker">Platform narrative</div>
-            <div className="title">FUSION is a unified accelerator platform for transformation advisory.</div>
-            <div className="journey">
-              {transformationThemes.map(([number, heading, copy]) => (
-                <div key={number}>
-                  <span>{number}</span>
-                  <h4>{heading}</h4>
-                  <p>{copy}</p>
+        <section id="dashboard" className="section dashboard-section">
+          <div className="section-head">
+            <div>
+              <div className="eyebrow">Enterprise Transformation Dashboard</div>
+              <h2>Single consolidated view after accelerator completion.</h2>
+              <p>
+                FUSION should culminate in one executive dashboard that combines
+                QMAP, AIDEN and CRAFT outputs into readiness, risks, investment
+                areas, roadmap and quantified impact.
+              </p>
+            </div>
+          </div>
+
+          <div className="dashboard">
+            <div className="dashboard-metrics">
+              {dashboardMetrics.map(([label, value]) => (
+                <div className="dash-metric" key={label}>
+                  <span>{label}</span>
+                  <b>{value}</b>
                 </div>
               ))}
             </div>
+            <div className="priority-card">
+              <span>Transformation Priority</span>
+              <h3>AI-enabled Intelligent Quality Engineering</h3>
+            </div>
+            <div className="dash-columns">
+              <div>
+                <h3>Top Risks</h3>
+                {riskThemes.map((risk) => <p key={risk}>• {risk}</p>)}
+              </div>
+              <div>
+                <h3>Recommended Investment Areas</h3>
+                {investmentAreas.map((area) => <p key={area}>• {area}</p>)}
+              </div>
+              <div>
+                <h3>3-Year Transformation Roadmap</h3>
+                <div className="year-row"><b>Year 1</b><span>Stabilise</span></div>
+                <div className="year-row"><b>Year 2</b><span>Modernise</span></div>
+                <div className="year-row"><b>Year 3</b><span>Optimise</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div className="impact-grid">
+            {impactMetrics.map(([label, value, copy]) => (
+              <div className="impact-card" key={label}>
+                <span>{label}</span>
+                <b>{value}</b>
+                <p>{copy}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section compliance-section">
+          <div>
+            <div className="eyebrow">Security & Compliance Posture</div>
+            <h2>Designed for enterprise and regulated advisory contexts.</h2>
+            <p>
+              FUSION should be positioned as a compliance-conscious accelerator
+              platform aligned to Feuji’s ISO 27001 information security posture
+              and HIPAA-aware delivery considerations for healthcare contexts.
+              The platform supports cross-industry assessment while allowing
+              benchmarks, evidence handling and reporting to be contextualised.
+            </p>
+          </div>
+          <div className="compliance-grid">
+            {["ISO 27001-aligned posture", "HIPAA-aware delivery lens", "Evidence traceability", "Consultant validation"].map((item) => (
+              <span key={item}>{item}</span>
+            ))}
           </div>
         </section>
       </main>
 
       <footer>
-        <div className="foot">
-          <div>
-            <b>Feuji FUSION</b>
-            <br />
-            <span>Transformation Intelligence Platform</span>
-          </div>
-          <span>Executive Edition 2026</span>
-        </div>
+        <b>Feuji FUSION™</b>
+        <span>Enterprise Advisory Platform · QMAP · AIDEN · CRAFT</span>
       </footer>
       <div className={`toast${toast ? " show" : ""}`}>{toast}</div>
     </>
