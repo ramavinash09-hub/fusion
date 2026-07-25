@@ -84,6 +84,15 @@ const journey = [
   "Transformation Roadmap"
 ];
 
+const readinessSignals = [
+  ["Quality", "QE maturity, practices and controls"],
+  ["AI", "Responsible AI readiness and adoption"],
+  ["Automation", "Framework, CI/CD and engineering flow"],
+  ["Governance", "Decision rights, risk and standards"],
+  ["Data", "Test data, evidence and observability"],
+  ["Roadmap", "Prioritised actions and executive reporting"]
+];
+
 const dashboardMetrics = [
   ["Overall Enterprise Readiness", "78%"],
   ["Quality Engineering", "74%"],
@@ -224,8 +233,11 @@ export default function App() {
               <strong>FUSION</strong>
               <p>Evidence · AI Insights · Consultant Validation · Executive Roadmap</p>
               <div className="node-map">
-                {["QE", "AI", "AUTO", "GOV", "DATA", "ROADMAP"].map((node) => (
-                  <i key={node}>{node}</i>
+                {readinessSignals.map(([signal, copy]) => (
+                  <i key={signal}>
+                    <b>{signal}</b>
+                    <small>{copy}</small>
+                  </i>
                 ))}
               </div>
             </div>
