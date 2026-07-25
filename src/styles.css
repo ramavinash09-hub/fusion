@@ -723,35 +723,38 @@ nav {
 }
 
 .journey {
+  counter-reset: journey;
   display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(9, minmax(122px, 1fr));
-  margin-top: 30px;
+  gap: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 34px auto 0;
+  max-width: 1180px;
   position: relative;
 }
 
 .journey::before {
-  background: rgba(241, 90, 36, 0.13);
+  background:
+    linear-gradient(90deg, rgba(241, 90, 36, 0.16), rgba(241, 90, 36, 0.16)) 50% 24% / 68% 2px no-repeat,
+    linear-gradient(90deg, rgba(241, 90, 36, 0.16), rgba(241, 90, 36, 0.16)) 50% 50% / 68% 2px no-repeat,
+    linear-gradient(90deg, rgba(241, 90, 36, 0.16), rgba(241, 90, 36, 0.16)) 50% 76% / 68% 2px no-repeat;
   content: "";
-  height: 2px;
-  left: 5%;
+  inset: 0;
   position: absolute;
-  right: 5%;
-  top: 68px;
   z-index: 0;
 }
 
 .journey::after {
-  animation: processRun 8s cubic-bezier(0.72, 0, 0.28, 1) infinite;
-  background: linear-gradient(90deg, transparent, var(--orange), var(--orange-2), transparent);
-  border-radius: 999px;
-  box-shadow: 0 0 28px rgba(241, 90, 36, 0.34);
+  animation: boardPulse 8s steps(9) infinite;
+  background: rgba(241, 90, 36, 0.12);
+  border: 1px solid rgba(241, 90, 36, 0.2);
+  border-radius: 28px;
+  box-shadow: 0 26px 70px rgba(241, 90, 36, 0.12);
   content: "";
-  height: 4px;
-  left: 5%;
+  height: calc((100% - 36px) / 3);
+  left: 0;
   position: absolute;
-  top: 67px;
-  width: 18%;
+  top: 0;
+  width: calc((100% - 36px) / 3);
   z-index: 0;
 }
 
@@ -763,9 +766,9 @@ nav {
   border-radius: 20px;
   box-shadow: 0 12px 30px rgba(144, 63, 21, 0.08);
   isolation: isolate;
-  min-height: 178px;
+  min-height: 150px;
   overflow: hidden;
-  padding: 20px;
+  padding: 22px;
   position: relative;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
   z-index: 1;
@@ -799,13 +802,7 @@ nav {
 }
 
 .journey-step:not(:last-child)::after {
-  background: linear-gradient(90deg, rgba(241, 90, 36, 0.08), rgba(241, 90, 36, 0.55));
-  content: "";
-  height: 2px;
-  right: -15px;
-  top: 68px;
-  transform: none;
-  width: 16px;
+  display: none;
 }
 
 .journey-step i {
@@ -850,7 +847,7 @@ nav {
   font-size: 14px;
   font-weight: 900;
   line-height: 1.45;
-  margin-top: 24px;
+  margin-top: 20px;
 }
 
 .unified-section {
@@ -1405,6 +1402,53 @@ footer span {
   90%,
   100% {
     transform: translateX(500%);
+  }
+}
+
+@keyframes boardPulse {
+  0%,
+  10% {
+    transform: translate(0, 0);
+  }
+
+  11%,
+  21% {
+    transform: translate(calc(100% + 18px), 0);
+  }
+
+  22%,
+  32% {
+    transform: translate(calc(200% + 36px), 0);
+  }
+
+  33%,
+  43% {
+    transform: translate(0, calc(100% + 18px));
+  }
+
+  44%,
+  54% {
+    transform: translate(calc(100% + 18px), calc(100% + 18px));
+  }
+
+  55%,
+  65% {
+    transform: translate(calc(200% + 36px), calc(100% + 18px));
+  }
+
+  66%,
+  76% {
+    transform: translate(0, calc(200% + 36px));
+  }
+
+  77%,
+  87% {
+    transform: translate(calc(100% + 18px), calc(200% + 36px));
+  }
+
+  88%,
+  100% {
+    transform: translate(calc(200% + 36px), calc(200% + 36px));
   }
 }
 
